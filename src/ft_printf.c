@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 20:36:56 by achavez           #+#    #+#             */
-/*   Updated: 2019/03/07 22:48:44 by achavez          ###   ########.fr       */
+/*   Updated: 2019/03/08 20:17:11 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 void	parse_format(t_data *p)
 {
 	int i = 0;
+
+	//check_flag(t_data *p);
+
 	if (*p->traverse == 's')
 	{
 		p->str = va_arg(p->arg, char *);
@@ -57,9 +60,10 @@ void	parse_format(t_data *p)
 		}
 		ft_putstr(p->str);
 	}
-	if (*p->traverse == 'p')
+	if (*p->traverse == 'f')
 	{
-		p->v = va_arg(p->arg, void *);
+		p->f = va_arg(p->arg, double);
+		ft_putfloat(p->f);
 	}
 }
 

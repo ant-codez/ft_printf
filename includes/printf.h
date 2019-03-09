@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 20:37:50 by achavez           #+#    #+#             */
-/*   Updated: 2019/03/07 21:30:01 by achavez          ###   ########.fr       */
+/*   Updated: 2019/03/08 20:17:05 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,16 @@
 
 typedef struct 		s_data
 {
+	// important and must be stored in struct
 	va_list 		arg;
 	char			*traverse;
+	char			flags[4];
+	int				width;
+	int				precision;
+	enum			len{NONE = 0, l = 1, h = 2, L = 3, ll = 4, hh = 5} length;
+
+
+	//just used to hold data from va_arg()
 	char			*str;
 	unsigned int	i;
 	int				p;
