@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 20:37:50 by achavez           #+#    #+#             */
-/*   Updated: 2019/03/08 20:17:05 by achavez          ###   ########.fr       */
+/*   Updated: 2019/03/09 19:14:08 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,8 @@ typedef struct 		s_data
 
 int		printf(const char * restrict format, ...);
 int		make_printf(t_data *p);
+void	parse_format(t_data *p);
+void	check_flags(t_data *p);
+void	check_width(t_data *p);
 
 #endif

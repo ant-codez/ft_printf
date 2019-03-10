@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 20:36:56 by achavez           #+#    #+#             */
-/*   Updated: 2019/03/08 20:17:11 by achavez          ###   ########.fr       */
+/*   Updated: 2019/03/09 19:16:20 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	parse_format(t_data *p)
 {
 	int i = 0;
 
-	//check_flag(t_data *p);
+	check_flags(p);
+	//check_width(p);
 
 	if (*p->traverse == 's')
 	{
