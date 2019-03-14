@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 20:37:50 by achavez           #+#    #+#             */
-/*   Updated: 2019/03/09 19:14:08 by achavez          ###   ########.fr       */
+/*   Updated: 2019/03/13 19:17:05 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,20 @@
 # include <stdarg.h>
 # include "libft.h"
 
+typedef enum	e_len
+{
+	hh = 0, h = 1, l = 2, ll = 3, j = 4, z = 5
+}				t_len;
+
 typedef struct 		s_data
 {
 	// important and must be stored in struct
 	va_list 		arg;
 	char			*traverse;
-	char			flags[4];
-	int				width;
-	int				precision;
-	enum			len{NONE = 0, l = 1, h = 2, L = 3, ll = 4, hh = 5} length;
-
+	char			flags[5];
+	short			width;
+	short			precision;
+	int				length;
 
 	//just used to hold data from va_arg()
 	char			*str;
@@ -37,7 +41,7 @@ typedef struct 		s_data
 int		printf(const char * restrict format, ...);
 int		make_printf(t_data *p);
 void	parse_format(t_data *p);
-void	check_flags(t_data *p);
-void	check_width(t_data *p);
+void	find_conversions(t_data *p);
+void	parse_flags(t_data *p);
 
 #endif

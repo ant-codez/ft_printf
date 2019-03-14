@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strchr_c.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/06 15:02:06 by achavez           #+#    #+#             */
-/*   Updated: 2019/03/13 19:16:42 by achavez          ###   ########.fr       */
+/*   Created: 2019/03/13 15:56:49 by achavez           #+#    #+#             */
+/*   Updated: 2019/03/13 16:25:44 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "printf.h"
+#include "libft.h"
 
-int main()
+char	ft_strchr_c(const char *str, int c)
 {
-	char 	*str = "Hello";
-	char 	*col = "Blakkk";
-	char	c = 'F';
-	unsigned int	u = 42949672;
-	int		num = 042;
-	float flo = 1233;
+	char	*s;
 
-
-	ft_printf("My .11x[%hx]\nMy s[%s]\n\n", num, str);
-
-	printf("printf #xll[%hx]\nprintf .3s[%.3s]\n", num, str);
-	return 0;
+	s = (char *)str;
+	while (*s != '\0')
+	{
+		if (*s == c)
+			return (1);
+		s++;
+	}
+	if (*s == '\0' && c == '\0')
+		return (0);
+	return (0);
 }

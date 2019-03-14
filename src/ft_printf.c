@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 20:36:56 by achavez           #+#    #+#             */
-/*   Updated: 2019/03/09 19:16:20 by achavez          ###   ########.fr       */
+/*   Updated: 2019/03/13 19:17:12 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,15 @@ void	parse_format(t_data *p)
 {
 	int i = 0;
 
-	check_flags(p);
+	find_conversions(p);
 	//check_width(p);
+
+	for (int x = 0; x < 5; x++)
+		printf("Flags[%c]\n", p->flags[x]);
+
+	printf(".precision[%d]\n", p->precision);
+
+	printf("length[%d]\n", p->length);
 
 	if (*p->traverse == 's')
 	{
