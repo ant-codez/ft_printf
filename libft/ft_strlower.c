@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlower.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/06 15:02:06 by achavez           #+#    #+#             */
-/*   Updated: 2019/03/15 16:27:15 by achavez          ###   ########.fr       */
+/*   Created: 2019/03/15 16:11:09 by achavez           #+#    #+#             */
+/*   Updated: 2019/03/15 16:12:03 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "printf.h"
+#include "libft.h"
 
-int main()
+void	ft_strlower(char *str)
 {
-	char 	*str = "Hello";
-	char 	*col = "Blakkk";
-	char	c = 'F';
-	unsigned int	u = 42949672;
-	int		num = 42;
-	float flo = 1233;
+	int i;
 
-
-	ft_printf("My f[%f]\n",flo);
-
-	printf("printf f[%f]\n", flo);
-	return 0;
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] >= 'A' && str[i] <= 'Z')
+			str[i] += ' ';
+		i++;
+	}
 }

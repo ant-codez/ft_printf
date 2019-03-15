@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 20:36:56 by achavez           #+#    #+#             */
-/*   Updated: 2019/03/13 19:17:12 by achavez          ###   ########.fr       */
+/*   Updated: 2019/03/15 13:24:28 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,64 +15,8 @@
 
 void	parse_format(t_data *p)
 {
-	int i = 0;
-
 	find_conversions(p);
-	//check_width(p);
-
-	for (int x = 0; x < 5; x++)
-		printf("Flags[%c]\n", p->flags[x]);
-
-	printf(".precision[%d]\n", p->precision);
-
-	printf("length[%d]\n", p->length);
-
-	if (*p->traverse == 's')
-	{
-		p->str = va_arg(p->arg, char *);
-		ft_putstr(p->str);
-	}
-	if (*p->traverse == 'c')
-	{
-		p->i = va_arg(p->arg, int);
-		ft_putchar(p->i);
-	}
-	if (*p->traverse == 'd' || *p->traverse == 'i')
-	{
-		p->i = va_arg(p->arg, int);
-		ft_putnbr(p->i);
-	}
-	if (*p->traverse == 'o')
-	{
-		p->p = va_arg(p->arg, int);
-		p->str = ft_itoa_base(p->p, 8);
-		ft_putstr(p->str);
-	}
-	if (*p->traverse == 'u')
-	{
-		p->i = va_arg(p->arg, unsigned int);
-		ft_putnbr_u(p->i);
-	}
-	if (*p->traverse == 'x' || *p->traverse == 'X')
-	{
-		p->i = va_arg(p->arg, unsigned int);
-		p->str = ft_itoa_base(p->i, 16);
-		if (*p->traverse == 'x')
-		{
-			while (p->str[i] != '\0')
-			{
-				if (p->str[i] >= 'A' && p->str[i] <= 'Z')
-					p->str[i] = ft_tolower(p->str[i]);
-				i++;
-			}
-		}
-		ft_putstr(p->str);
-	}
-	if (*p->traverse == 'f')
-	{
-		p->f = va_arg(p->arg, double);
-		ft_putfloat(p->f);
-	}
+	determine_specifier(p);
 }
 
 int		make_printf(t_data *p)

@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 17:43:03 by achavez           #+#    #+#             */
-/*   Updated: 2019/03/13 15:58:50 by achavez          ###   ########.fr       */
+/*   Updated: 2019/03/15 16:12:22 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int					get_next_line(const int fd, char **line);
 size_t				ft_strlen(const char *str);
 char				*ft_strdup(const char *str);
 char				ft_strchr_c(const char *str, int c);
+void				ft_strlower(char *str);
 char				*ft_strndup(const char *str, size_t n);
 char				*ft_strcpy(char *dest, const char *src);
 char				*ft_strncpy(char *dest, const char *src, size_t len);

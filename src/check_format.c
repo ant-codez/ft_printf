@@ -6,11 +6,41 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 19:11:50 by achavez           #+#    #+#             */
-/*   Updated: 2019/03/13 19:34:45 by achavez          ###   ########.fr       */
+/*   Updated: 2019/03/15 16:26:52 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
+
+void determine_specifier(t_data *p)
+{
+	if (*p->traverse == 's')
+	{
+		p->str = va_arg(p->arg, char *);
+		ft_putstr(p->str);
+	}
+	if (*p->traverse == 'c')
+	{
+		p->i = va_arg(p->arg, int);
+		ft_putchar(p->i);
+	}
+	if (*p->traverse == 'd' || *p->traverse == 'i')
+	{
+		p->i = va_arg(p->arg, int);
+		ft_putnbr(p->i);
+	}
+	if (*p->traverse == 'o')
+		print_o(p);
+	if (*p->traverse == 'u')
+	{
+		p->i = va_arg(p->arg, unsigned int);
+		ft_putnbr_u(p->i);
+	}
+	if (*p->traverse == 'x' || *p->traverse == 'X')
+		print_x(p);
+	if (*p->traverse == 'f')
+		print_f(p);
+}
 
 void	parse_flags(t_data *p)
 {
@@ -29,9 +59,23 @@ void	parse_flags(t_data *p)
 void	parse_conversion(t_data *p)
 {
 	if (*p->traverse == 'h')
-		p->length = h;
+	{
+		if (p->length != h)
+			p->length = h;
+		else if (p->length == h)
+			p->length = hh;
+	}
 	if (*p->traverse == 'l')
-		p->length = l;
+	{
+		if (p->length != l)
+			p->length = l;
+		else if (p->length == l)
+			p->length = ll;
+	}
+	if (*p->traverse == 'j')
+		p->length = j;
+	if (*p->traverse == 'z')
+		p->length = z;
 }
 
 void	find_conversions(t_data *p)
@@ -40,13 +84,9 @@ void	find_conversions(t_data *p)
 	{
 		(ft_strchr_c("#0-+ ", *p->traverse) ? parse_flags(p) : 0);
 		if (ft_strchr_c("123456789", *p->traverse))
-		{
 			p->width = ft_atoi(p->traverse);
-		}
 		if (*p->traverse == '.' && (p->traverse)++)
-		{
 			p->precision = ft_atoi(p->traverse);
-		}
 		(ft_strchr_c("hljz", *p->traverse)) ? parse_conversion(p) : 0;
 		p->traverse++;
 	}
