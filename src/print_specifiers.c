@@ -6,11 +6,20 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/15 14:49:35 by achavez           #+#    #+#             */
-/*   Updated: 2019/03/15 16:30:45 by achavez          ###   ########.fr       */
+/*   Updated: 2019/03/18 19:11:44 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
+
+void	print_s(t_data *p)
+{
+	char	*s;
+
+	s = va_arg(p->arg, char *);
+	//printf("Width = %d  Precision = %d\n", p->width, p->precision);
+	print_str(s, p);
+}
 
 void	print_o(t_data *p)
 {
@@ -48,6 +57,14 @@ void	print_x(t_data *p)
 			ft_strlower(str);
 		ft_putstr(str);
 	}
+}
+
+void	print_di(t_data *p)
+{
+	int num;
+
+	num = va_arg(p->arg, int);
+	ft_putnbr(num);
 }
 
 void	print_f(t_data *p)

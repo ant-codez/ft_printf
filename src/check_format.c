@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 19:11:50 by achavez           #+#    #+#             */
-/*   Updated: 2019/03/15 16:26:52 by achavez          ###   ########.fr       */
+/*   Updated: 2019/03/19 21:41:57 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,11 @@
 void determine_specifier(t_data *p)
 {
 	if (*p->traverse == 's')
-	{
-		p->str = va_arg(p->arg, char *);
-		ft_putstr(p->str);
-	}
+		print_s(p);
 	if (*p->traverse == 'c')
-	{
-		p->i = va_arg(p->arg, int);
-		ft_putchar(p->i);
-	}
+		print_c(p);
 	if (*p->traverse == 'd' || *p->traverse == 'i')
-	{
-		p->i = va_arg(p->arg, int);
-		ft_putnbr(p->i);
-	}
+		print_di(p);
 	if (*p->traverse == 'o')
 		print_o(p);
 	if (*p->traverse == 'u')
@@ -40,6 +31,8 @@ void determine_specifier(t_data *p)
 		print_x(p);
 	if (*p->traverse == 'f')
 		print_f(p);
+	if (*p->traverse == 'p')
+		print_p(p);
 }
 
 void	parse_flags(t_data *p)

@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 20:37:50 by achavez           #+#    #+#             */
-/*   Updated: 2019/03/15 16:25:05 by achavez          ###   ########.fr       */
+/*   Updated: 2019/03/19 20:58:34 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ typedef struct 		s_data
 	va_list 		arg;
 	char			*traverse;
 	char			flags[5];
-	short			width;
-	short			precision;
+	int				width;
+	int				precision;
 	int				length;
 
 	//just used to hold data from va_arg()
@@ -51,5 +51,10 @@ void	determine_specifier(t_data *p);
 void	print_o(t_data *p);
 void	print_x(t_data *p);
 void	print_f(t_data *p);
+void	print_c(t_data *p);
+void	print_p(t_data *p);
+void	print_di(t_data *p);
+void	print_s(t_data *p);
+void	print_str(char *s, t_data *p);
 
 #endif
