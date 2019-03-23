@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 20:37:50 by achavez           #+#    #+#             */
-/*   Updated: 2019/03/19 20:58:34 by achavez          ###   ########.fr       */
+/*   Updated: 2019/03/22 15:57:14 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 typedef enum	e_len
 {
-	hh = 0, h = 1, l = 2, ll = 3, j = 4, z = 5
+	none = 0, h = 1, l = 2, ll = 3, j = 4, z = 5, hh = 6
 }				t_len;
 
 /*
@@ -48,7 +48,9 @@ void	parse_format(t_data *p);
 void	find_conversions(t_data *p);
 void	parse_flags(t_data *p);
 void	determine_specifier(t_data *p);
+void	reset_struct(t_data *p);
 void	print_o(t_data *p);
+void	print_u(t_data *p);
 void	print_x(t_data *p);
 void	print_f(t_data *p);
 void	print_c(t_data *p);

@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/15 14:49:35 by achavez           #+#    #+#             */
-/*   Updated: 2019/03/18 19:11:44 by achavez          ###   ########.fr       */
+/*   Updated: 2019/03/22 17:08:45 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,24 @@ void	print_o(t_data *p)
 {
 	int 	o;
 	char	*str;
+	int		len;
 
 	o = va_arg(p->arg, int);
 	str = ft_itoa_base(o, 8);
-	if (p->flags[1] == '#')
+	len = ft_strlen(str);
+	while (--p->width > len)
+		ft_putchar(' ');
+	if (p->precision > len)
 	{
-		p->str = ft_strjoin("0", str);
-		ft_putstr(p->str);
+		while (--p->precision >= len)
+			ft_putchar('0');
+		ft_putstr(str);
 	}
 	else
-		ft_putstr(str);
+	{
+		p->flags[1] == '#' ? p->str = ft_strjoin("0", str) : (p->str = str);
+		ft_putstr(p->str);
+	}
 }
 
 void	print_x(t_data *p)
@@ -62,8 +70,12 @@ void	print_x(t_data *p)
 void	print_di(t_data *p)
 {
 	int num;
+	int digits;
 
 	num = va_arg(p->arg, int);
+	digits = ft_getdigits(num);
+	while (--p->precision > digits)
+		ft_putnbr(0);
 	ft_putnbr(num);
 }
 

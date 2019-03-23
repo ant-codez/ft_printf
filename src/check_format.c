@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 19:11:50 by achavez           #+#    #+#             */
-/*   Updated: 2019/03/19 21:41:57 by achavez          ###   ########.fr       */
+/*   Updated: 2019/03/22 15:56:52 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@ void determine_specifier(t_data *p)
 	if (*p->traverse == 'o')
 		print_o(p);
 	if (*p->traverse == 'u')
-	{
-		p->i = va_arg(p->arg, unsigned int);
-		ft_putnbr_u(p->i);
-	}
+		print_u(p);
 	if (*p->traverse == 'x' || *p->traverse == 'X')
 		print_x(p);
 	if (*p->traverse == 'f')
@@ -39,7 +36,7 @@ void	parse_flags(t_data *p)
 {
 	if (*p->traverse == '#')
 		p->flags[1] = '#';
-	else if (*p->traverse == '0')
+	else if (*p->traverse == '0' && !ft_isdigit(*(p->traverse - 1)))
 		p->flags[0] = '0';
 	else if (*p->traverse == '+')
 		p->flags[2] = '+';
@@ -77,10 +74,16 @@ void	find_conversions(t_data *p)
 	{
 		(ft_strchr_c("#0-+ ", *p->traverse) ? parse_flags(p) : 0);
 		if (ft_strchr_c("123456789", *p->traverse))
-			p->width = ft_atoi(p->traverse);
+		{
+				p->width = (p->width * 10) + ft_atoi(p->traverse);
+				p->traverse++;
+		}
 		if (*p->traverse == '.' && (p->traverse)++)
+		{
 			p->precision = ft_atoi(p->traverse);
+			p->traverse++;
+		}
 		(ft_strchr_c("hljz", *p->traverse)) ? parse_conversion(p) : 0;
-		p->traverse++;
+		(ft_strchr_c("#0-+ .123456789hjlz", *p->traverse)) ? p->traverse++ : 0;
 	}
 }

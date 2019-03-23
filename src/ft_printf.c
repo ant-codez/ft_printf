@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 20:36:56 by achavez           #+#    #+#             */
-/*   Updated: 2019/03/19 20:57:07 by achavez          ###   ########.fr       */
+/*   Updated: 2019/03/21 20:22:14 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int		make_printf(t_data *p)
 		{
 			p->traverse++;
 			parse_format(p);
+			reset_struct(p);
 		}
 		p->traverse++;
 	}
@@ -47,4 +48,12 @@ int		ft_printf(const char * restrict format, ...)
 	va_end(p.arg);
 
 	return (done);
+}
+
+void	reset_struct(t_data *p)
+{
+	p->width = 0;
+	p->precision = 0;
+	p->length = 0;
+	ft_memset((void*)p->flags, '\0', 5);
 }

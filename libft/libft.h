@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 17:43:03 by achavez           #+#    #+#             */
-/*   Updated: 2019/03/15 16:12:22 by achavez          ###   ########.fr       */
+/*   Updated: 2019/03/22 14:49:08 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void				ft_putfloat(double f);
 int					ft_isalpha(int arg);
 int					ft_isdigit(int arg);
 int					ft_isalnum(int arg);
+int					ft_getdigits(int num);
 int					ft_isascii(int arg);
 int					ft_isprint(int arg);
 int					ft_upperchar(char *character);

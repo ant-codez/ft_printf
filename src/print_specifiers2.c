@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 19:11:56 by achavez           #+#    #+#             */
-/*   Updated: 2019/03/19 21:32:40 by achavez          ###   ########.fr       */
+/*   Updated: 2019/03/22 16:17:11 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,24 @@ void	print_p(t_data *p)
 	str = ft_itoa_base(x, 16);
 	p->str = ft_strjoin("0x10", str);
 	ft_strlower(p->str);
-	ft_putstr(p->str);
+	if (p->width > 11 && p->flags[3] == '-')
+	{
+		ft_putstr(p->str);
+		while (p->width > 11)
+		{
+			ft_putchar(' ');
+			p->width--;
+		}
+	}
+	else
+	{
+		while (p->width > 11)
+		{
+			p->flags[0] != '0' ? ft_putchar(' ') : ft_putchar('0');
+			p->width--;
+		}
+		ft_putstr(p->str);
+	}
 }
 
 void	print_c(t_data *p)
@@ -47,4 +64,16 @@ void	print_c(t_data *p)
 		}
 		ft_putchar(c);
 	}
+}
+
+void	print_u(t_data *p)
+{
+	unsigned int 	u;
+//	int 			digits;
+
+	u = va_arg(p->arg, unsigned int);
+//	digits = ft_getdigits((int)u);
+//	while(--p->width > digits)
+//		ft_putchar(' ');
+	ft_putnbr_u(u);
 }
