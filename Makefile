@@ -6,7 +6,7 @@
 #    By: achavez <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/04 17:21:50 by achavez           #+#    #+#              #
-#    Updated: 2019/03/09 19:13:12 by achavez          ###   ########.fr        #
+#    Updated: 2019/04/22 18:50:49 by achavez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,5 +39,6 @@ reclean: re
 	rm -rf $(O)
 
 test: reclean
-	gcc main.c -I ./printf/includes -L ./ -lftprintf
+	gcc main.c -I ./printf/includes -L ./ -lftprintf $(I)
+	cat main.c
 	./a.out

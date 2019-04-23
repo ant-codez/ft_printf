@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 19:11:56 by achavez           #+#    #+#             */
-/*   Updated: 2019/03/22 16:17:11 by achavez          ###   ########.fr       */
+/*   Updated: 2019/04/22 20:49:24 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,13 @@ void	print_p(t_data *p)
 	if (p->width > 11 && p->flags[3] == '-')
 	{
 		ft_putstr(p->str);
-		while (p->width > 11)
-		{
+		while (p->width-- > 11)
 			ft_putchar(' ');
-			p->width--;
-		}
 	}
 	else
 	{
-		while (p->width > 11)
-		{
+		while (p->width-- > 11)
 			p->flags[0] != '0' ? ft_putchar(' ') : ft_putchar('0');
-			p->width--;
-		}
 		ft_putstr(p->str);
 	}
 }
@@ -49,19 +43,13 @@ void	print_c(t_data *p)
 	if (p->width > 1 && p->flags[3] == '-')
 	{
 		ft_putchar(c);
-		while (p->width > 0)
-		{
+		while (p->width-- > 1)
 			ft_putchar(' ');
-			p->width--;
-		}
 	}
 	else
 	{
-		while (p->width > 0)
-		{
+		while (p->width-- > 1)
 			p->flags[0] != '0' ? ft_putchar(' ') : ft_putchar('0');
-			p->width--;
-		}
 		ft_putchar(c);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/15 14:49:35 by achavez           #+#    #+#             */
-/*   Updated: 2019/03/22 17:08:45 by achavez          ###   ########.fr       */
+/*   Updated: 2019/04/22 20:33:39 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	print_s(t_data *p)
 	char	*s;
 
 	s = va_arg(p->arg, char *);
-	//printf("Width = %d  Precision = %d\n", p->width, p->precision);
 	print_str(s, p);
 }
 
@@ -76,6 +75,8 @@ void	print_di(t_data *p)
 	digits = ft_getdigits(num);
 	while (--p->precision > digits)
 		ft_putnbr(0);
+	while (--p->width >= digits)
+		ft_putchar(' ');
 	ft_putnbr(num);
 }
 

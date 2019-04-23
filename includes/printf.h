@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 20:37:50 by achavez           #+#    #+#             */
-/*   Updated: 2019/03/22 15:57:14 by achavez          ###   ########.fr       */
+/*   Updated: 2019/04/22 17:03:15 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct 		s_data
 	int				width;
 	int				precision;
 	int				length;
+	char			*buffer;
 
 	//just used to hold data from va_arg()
 	char			*str;
@@ -58,5 +59,7 @@ void	print_p(t_data *p);
 void	print_di(t_data *p);
 void	print_s(t_data *p);
 void	print_str(char *s, t_data *p);
+char	*handle_precision(int pre, char *s);
+char	*handle_width(char *str, t_data *p);
 
 #endif
