@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 20:37:50 by achavez           #+#    #+#             */
-/*   Updated: 2019/04/22 17:03:15 by achavez          ###   ########.fr       */
+/*   Updated: 2019/04/23 17:33:00 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void	print_di(t_data *p);
 void	print_s(t_data *p);
 void	print_str(char *s, t_data *p);
 char	*handle_precision(int pre, char *s);
+char	*handle_precision_int(char *str, int pad);
 char	*handle_width(char *str, t_data *p);
+char	*handle_width_int(char *str, t_data *p);
 
 #endif

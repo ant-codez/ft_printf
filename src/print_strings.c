@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 16:04:13 by achavez           #+#    #+#             */
-/*   Updated: 2019/04/22 20:29:48 by achavez          ###   ########.fr       */
+/*   Updated: 2019/04/23 20:20:51 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,46 @@ char	*handle_precision(int precision, char *str)
 	tmp = ft_strnew(precision);
 	while(++i != precision)
 		tmp[i] = str[i];
+	return (tmp);
+}
+
+char	*handle_precision_int(char *str, int pad)
+{
+	int 	i;
+	char	*tmp;
+	char	*out;
+	char	t;
+
+	tmp = ft_strnew(pad);
+	i = -1;
+	while (++i != pad)
+		tmp[i] = '0';
+	out = ft_strjoin(tmp, str);
+	i = -1;
+
+	while (out[++i] != '\0')
+		if ((out[i] == '-' || out[i] == '+'))
+		{
+			t = out[i];
+			out[i] = '0';
+			out[0] = t;
+		}
+	return (out);
+}
+
+char	*handle_width_int(char *str, t_data *p)
+{
+	char 	*buff;
+	char 	*tmp;
+	int		i;
+
+	i = -1;
+	buff = ft_strnew(p->width);
+	while (++i != (p->width - (int)ft_strlen(str)))
+		buff[i] = ' ';
+	if (p->flags[3] == '-')
+		tmp = ft_strjoin(str, buff);
+	else
+		tmp = ft_strjoin(buff, str);
 	return (tmp);
 }

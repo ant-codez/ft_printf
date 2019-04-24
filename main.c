@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/06 15:02:06 by achavez           #+#    #+#             */
-/*   Updated: 2019/04/22 20:46:39 by achavez          ###   ########.fr       */
+/*   Updated: 2019/04/23 20:03:32 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int main()
 	float flo = 1233;
 
 
-	ft_printf("My     p[%15p]\n", (void*)str);
+	ft_printf("My     d[%20d]\n", num);
 
-	printf("printf p[%15p]\n", (void*)str);
+	printf("printf d[%20d]\n", num);
 	return 0;
 }

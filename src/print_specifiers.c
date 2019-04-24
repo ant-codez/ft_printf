@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/15 14:49:35 by achavez           #+#    #+#             */
-/*   Updated: 2019/04/22 20:33:39 by achavez          ###   ########.fr       */
+/*   Updated: 2019/04/23 20:20:55 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,16 +68,32 @@ void	print_x(t_data *p)
 
 void	print_di(t_data *p)
 {
-	int num;
-	int digits;
+	int		num;
+	int		width;
+	char	*s;
+	char	*pre;
 
 	num = va_arg(p->arg, int);
-	digits = ft_getdigits(num);
-	while (--p->precision > digits)
-		ft_putnbr(0);
-	while (--p->width >= digits)
-		ft_putchar(' ');
-	ft_putnbr(num);
+	s = ft_itoa(num);
+	if (num > 0 && p->flags[2] == '+')
+		s = ft_strjoin("+", s);
+	width = 0;
+	if (p->precision > (int)ft_strlen(s))
+		pre = handle_precision_int(s, p->precision - (int)ft_strlen(s));
+	if (p->width > (int)ft_strlen(s))
+	{
+		if (pre[0] != '\0')
+			p->str = handle_width_int(pre, p);
+		else
+			p->str = handle_width_int(s, p);
+		width = 1;
+	}
+	if (width == 1)
+		ft_putstr(p->str);
+	else if (pre[0] != '\0')
+		ft_putstr(pre);
+	else
+		ft_putstr(s);
 }
 
 void	print_f(t_data *p)
