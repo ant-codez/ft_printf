@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_itoa_u.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/06 15:02:06 by achavez           #+#    #+#             */
-/*   Updated: 2019/04/24 20:56:19 by achavez          ###   ########.fr       */
+/*   Created: 2019/04/24 18:18:22 by achavez           #+#    #+#             */
+/*   Updated: 2019/04/24 18:36:14 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include "printf.h"
+#include "libft.h"
 
-int main()
+char	*ft_itoa_u(unsigned int n)
 {
-	char 	*str = "Hello";
-	char 	*col = "Blakkk";
-	char	c = 'F';
-	unsigned int	u = -341;
-	int			num = 2195;
-	float f = 123.42;
+	char *s;
 
-
-	ft_printf("My     f[%f]\n", f);
-
-	printf("printf x[%.10f]\n", f);
-	return 0;
+	if ((s = (char *)malloc(sizeof(char) * 2)))
+	{
+		if (n >= 10)
+			s = ft_strjoin(ft_itoa_u(n / 10), ft_itoa_u(n % 10));
+		else if (n < 10)
+		{
+			s[0] = n + '0';
+			s[1] = '\0';
+		}
+		return (s);
+	}
+	return (NULL);
 }
+

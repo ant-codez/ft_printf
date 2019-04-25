@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 19:11:56 by achavez           #+#    #+#             */
-/*   Updated: 2019/04/24 16:52:58 by achavez          ###   ########.fr       */
+/*   Updated: 2019/04/24 19:14:28 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,13 @@ void	print_c(t_data *p)
 
 void	print_u(t_data *p)
 {
-	uintmax_t 		u;
+	unsigned int 	u;
 	char			*s;
 	char			*tmp;
 	int				width;
 
 	u = va_arg(p->arg, unsigned int);
-	s = ft_itoa(u);
+	s = ft_itoa_u(u);
 	width = 0;
 	if (p->precision > (int)ft_strlen(s))
 		tmp = handle_precision_int(s, p->precision - (int)ft_strlen(s));

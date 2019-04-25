@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 17:43:03 by achavez           #+#    #+#             */
-/*   Updated: 2019/03/22 14:49:08 by achavez          ###   ########.fr       */
+/*   Updated: 2019/04/24 18:44:51 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ size_t				ft_strnlen(const char *str, size_t maxlen);
 char				*ft_strncat(char *dest, const char *src, size_t n);
 size_t				ft_strlcat(char *dest, const char *src, size_t n);
 char				*ft_strchr(const char *str, int c);
+char				*ft_itoa_u(unsigned int x);
 char				*ft_strrchr(const char *str, int c);
 char				*ft_strstr(const char *haystack, const char *needle);
 int					ft_strncmp(const char *str1, const char *str2, size_t n);
