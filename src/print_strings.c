@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 16:04:13 by achavez           #+#    #+#             */
-/*   Updated: 2019/04/23 20:20:51 by achavez          ###   ########.fr       */
+/*   Updated: 2019/04/24 14:58:12 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ char	*handle_width_int(char *str, t_data *p)
 	i = -1;
 	buff = ft_strnew(p->width);
 	while (++i != (p->width - (int)ft_strlen(str)))
-		buff[i] = ' ';
+		p->flags[0] == '0' ? buff[i] = '0' : (buff[i] = ' ');
 	if (p->flags[3] == '-')
 		tmp = ft_strjoin(str, buff);
 	else

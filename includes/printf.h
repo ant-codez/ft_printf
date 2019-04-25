@@ -6,12 +6,13 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 20:37:50 by achavez           #+#    #+#             */
-/*   Updated: 2019/04/23 17:33:00 by achavez          ###   ########.fr       */
+/*   Updated: 2019/04/24 16:18:27 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PRINTF_H
 # define PRINTF_H
+# define UMAX (unsigned int)4294967295
 # include <stdarg.h>
 # include "libft.h"
 

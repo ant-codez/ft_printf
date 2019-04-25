@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/15 14:49:35 by achavez           #+#    #+#             */
-/*   Updated: 2019/04/23 20:20:55 by achavez          ###   ########.fr       */
+/*   Updated: 2019/04/24 14:56:24 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,30 @@ void	print_s(t_data *p)
 void	print_o(t_data *p)
 {
 	int 	o;
+	int		width;
 	char	*str;
-	int		len;
+	char	*tmp;
 
 	o = va_arg(p->arg, int);
 	str = ft_itoa_base(o, 8);
-	len = ft_strlen(str);
-	while (--p->width > len)
-		ft_putchar(' ');
-	if (p->precision > len)
+	p->flags[1] == '#' ? str = ft_strjoin("0", str) : 0;
+	width = 0;
+	if (p->precision > (int)ft_strlen(str))
+		tmp = handle_precision_int(str, p->precision - (int)ft_strlen(str));
+	if (p->width > (int)ft_strlen(str))
 	{
-		while (--p->precision >= len)
-			ft_putchar('0');
-		ft_putstr(str);
+		width = 1;
+		if (tmp[0] != '\0')
+			p->str = handle_width_int(tmp, p);
+		else
+			p->str = handle_width_int(str, p);
 	}
-	else
-	{
-		p->flags[1] == '#' ? p->str = ft_strjoin("0", str) : (p->str = str);
+	if (width == 1)
 		ft_putstr(p->str);
-	}
+	else if (tmp[0] != '\0')
+		ft_putstr(tmp);
+	else
+		ft_putstr(str);
 }
 
 void	print_x(t_data *p)
