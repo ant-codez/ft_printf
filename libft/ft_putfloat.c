@@ -6,27 +6,39 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 15:22:50 by achavez           #+#    #+#             */
-/*   Updated: 2019/03/08 16:06:42 by achavez          ###   ########.fr       */
+/*   Updated: 2019/04/25 14:46:17 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putfloat(double n)
+char	*ft_putfloat(double n, int p)
 {
 	signed long int	decimal;
+	int				d;
 	signed long int num;
+	char			*tmp;
 
+	tmp = ft_strnew(42);
 	if (n < 0)
 	{
-		ft_putchar('-');
+		tmp[0] = '-';
 		n *= -1;
 	}
+	d = 1;
 	num = (signed long int)n;
-	ft_putnbr(num);
-	ft_putchar('.');
+	tmp = ft_strjoin(tmp, ft_itoa_u(num));
+	tmp = ft_strjoin(tmp, ".");
 	n -= num;
-	n *= 1000000;
+
+	if (p > 0)
+		while (--p >= 0)
+			d *= 10;
+	else
+		d = 1000000;
+
+	n *= d;
 	decimal = (signed long int)(n + 0.5);
-	ft_putnbr(decimal);
+	tmp = ft_strjoin(tmp, ft_itoa_u(decimal));
+	return (tmp);
 }

@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 20:37:50 by achavez           #+#    #+#             */
-/*   Updated: 2019/04/24 16:18:27 by achavez          ###   ########.fr       */
+/*   Updated: 2019/04/25 15:05:57 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct 		s_data
 	int				precision;
 	int				length;
 	char			*buffer;
+	int				reee;
 
 	//just used to hold data from va_arg()
 	char			*str;

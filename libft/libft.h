@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 17:43:03 by achavez           #+#    #+#             */
-/*   Updated: 2019/04/24 18:44:51 by achavez          ###   ########.fr       */
+/*   Updated: 2019/04/25 15:37:38 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ char				*ft_strnstr(const char *s, const char *n, size_t len);
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_atoi(const char *str);
 void				ft_putnbr_u(unsigned int num);
-void				ft_putfloat(double f);
+char				*ft_putfloat(double f, int precision);
+char				*ft_itoa_base_u(unsigned int x, int base);
 int					ft_isalpha(int arg);
 int					ft_isdigit(int arg);
 int					ft_isalnum(int arg);
