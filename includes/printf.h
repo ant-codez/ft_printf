@@ -65,5 +65,7 @@ char	*handle_precision(int pre, char *s);
 char	*handle_precision_int(char *str, int pad);
 char	*handle_width(char *str, t_data *p);
 char	*handle_width_int(char *str, t_data *p);
+intmax_t		di_length(t_data *p);
+uintmax_t		oux_length(t_data *p);
 
 #endif

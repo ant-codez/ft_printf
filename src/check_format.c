@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 19:11:50 by achavez           #+#    #+#             */
-/*   Updated: 2019/04/23 15:49:40 by achavez          ###   ########.fr       */
+/*   Updated: 2019/04/25 15:29:13 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void determine_specifier(t_data *p)
 		print_di(p);
 	if (*p->traverse == 'o')
 		print_o(p);
-	if (*p->traverse == 'u')
+	if (*p->traverse == 'u' || *p->traverse == 'U')
 		print_u(p);
 	if (*p->traverse == 'x' || *p->traverse == 'X')
 		print_x(p);

@@ -13,10 +13,10 @@
 #include "libft.h"
 #include <stdio.h>
 
-char	*ft_itoa_base_u(unsigned int value, int base)
+char	*ft_itoa_base_u(uintmax_t value, int base)
 {
 	char			*s;
-	unsigned int	num;
+	uintmax_t		num;
 	int				sign;
 	int				i;
 

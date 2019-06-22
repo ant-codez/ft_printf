@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/06 15:02:06 by achavez           #+#    #+#             */
-/*   Updated: 2019/04/25 19:33:34 by achavez          ###   ########.fr       */
+/*   Updated: 2019/06/21 22:00:44 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ int main()
 	char 	*str = "Hello";
 	char 	*col = "Blakkk";
 	char	c = 'F';
-	unsigned int	u = -341;
-	int			num = -42;
+	unsigned int	u = 3410000000;
+	int			num = -1221;
 	float f = 123.42;
 
 
-	printf("%010x\n", 542);
+	printf("%f\n", f);
 
-	ft_printf("%010x\n", 542);
+	ft_printf("%f\n", f);
 	return 0;
 }

@@ -47,7 +47,7 @@ int					ft_strcmp(const char *s1, const char *s2);
 int					ft_atoi(const char *str);
 void				ft_putnbr_u(unsigned int num);
 char				*ft_putfloat(double f, int precision);
-char				*ft_itoa_base_u(unsigned int x, int base);
+char				*ft_itoa_base_u(uintmax_t x, int base);
 int					ft_isalpha(int arg);
 int					ft_isdigit(int arg);
 int					ft_isalnum(int arg);
@@ -82,7 +82,7 @@ void				ft_putchar_fd(char character, int file_descriptor);
 void				ft_putstr_fd(char const *string, int file_descriptor);
 void				ft_putendl_fd(char const *string, int file_descriptor);
 void				ft_putnbr_fd(int number, int file_descriptor);
-char				*ft_itoa(int number);
+char				*ft_itoa(intmax_t number);
 void				ft_function_test1();
 void				ft_function_test2();
 

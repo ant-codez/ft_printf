@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 20:36:56 by achavez           #+#    #+#             */
-/*   Updated: 2019/04/22 20:18:38 by achavez          ###   ########.fr       */
+/*   Updated: 2019/04/25 15:32:41 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,26 @@ void	parse_format(t_data *p)
 
 int		make_printf(t_data *p)
 {
+	int rtn;
+
+	rtn = 0;
 	while(*p->traverse != '\0')
 	{
 		if (*p->traverse != '%')
+		{
 			ft_putchar(*p->traverse);
+			rtn++;
+		}
 		else if (*p->traverse == '%')
 		{
 			p->traverse++;
 			parse_format(p);
+			rtn += p->reee;
 			reset_struct(p);
 		}
 		p->traverse++;
 	}
-	return (0);
+	return (rtn);
 }
 
 int		ft_printf(const char * restrict format, ...)
