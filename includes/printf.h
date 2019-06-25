@@ -12,13 +12,12 @@
 
 #ifndef PRINTF_H
 # define PRINTF_H
-# define UMAX (unsigned int)4294967295
 # include <stdarg.h>
 # include "libft.h"
 
 typedef enum	e_len
 {
-	none = 0, h = 1, l = 2, ll = 3, j = 4, z = 5, hh = 6
+	none = 0, h = 1, l = 2, ll = 3, j = 4, z = 5, hh = 6, L = 7
 }				t_len;
 
 /*
@@ -60,12 +59,15 @@ void	print_c(t_data *p);
 void	print_p(t_data *p);
 void	print_di(t_data *p);
 void	print_s(t_data *p);
+void	print_percent(t_data *p);
 void	print_str(char *s, t_data *p);
 char	*handle_precision(int pre, char *s);
 char	*handle_precision_int(char *str, int pad);
 char	*handle_width(char *str, t_data *p);
 char	*handle_width_int(char *str, t_data *p);
+char	*handle_width_percent(char *str, t_data *p);
 intmax_t		di_length(t_data *p);
 uintmax_t		oux_length(t_data *p);
+long double		f_length(t_data *p);
 
 #endif

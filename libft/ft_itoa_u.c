@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-char	*ft_itoa_u(unsigned int n)
+char	*ft_itoa_u(uintmax_t n)
 {
 	char *s;
 

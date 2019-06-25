@@ -55,3 +55,16 @@ uintmax_t	oux_length(t_data *p)
 	o = (uintmax_t)o;
 	return (o);
 }
+
+long double		f_length(t_data *p) 
+{
+	long double f;
+
+	if (p->length == L)
+		f = (long double)va_arg(p->arg, long double);
+	else
+		f = (double)va_arg(p->arg, double);
+	
+	f = (long double)f;
+	return (f);
+}

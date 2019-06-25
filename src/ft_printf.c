@@ -49,6 +49,7 @@ int		ft_printf(const char * restrict format, ...)
 	int		done;
 
 	ft_bzero(&p, sizeof(p));
+	reset_struct(&p);
 	p.traverse = (char*)format;
 	va_start(p.arg, format);
 	done = make_printf(&p);
@@ -60,7 +61,7 @@ int		ft_printf(const char * restrict format, ...)
 void	reset_struct(t_data *p)
 {
 	p->width = 0;
-	p->precision = 0;
+	p->precision = -1;
 	p->length = 0;
 	ft_memset((void*)p->flags, '\0', 5);
 }

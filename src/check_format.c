@@ -30,6 +30,8 @@ void determine_specifier(t_data *p)
 		print_f(p);
 	if (*p->traverse == 'p')
 		print_p(p);
+	if (*p->traverse == '%')
+		print_percent(p);
 }
 
 void	parse_flags(t_data *p)
@@ -62,6 +64,8 @@ void	parse_conversion(t_data *p)
 		else if (p->length == l)
 			p->length = ll;
 	}
+	if (*p->traverse == 'L')
+		p->length = L;
 	if (*p->traverse == 'j')
 		p->length = j;
 	if (*p->traverse == 'z')
@@ -70,7 +74,7 @@ void	parse_conversion(t_data *p)
 
 void	find_conversions(t_data *p)
 {
-	while ((ft_strchr_c("#0-+ .123456789hljz", *p->traverse)))
+	while ((ft_strchr_c("#0-+ .123456789hlLjz", *p->traverse)))
 	{
 		(ft_strchr_c("#0-+ ", *p->traverse) ? parse_flags(p) : 0);
 		if (ft_strchr_c("123456789", *p->traverse))
@@ -83,7 +87,7 @@ void	find_conversions(t_data *p)
 			p->precision = ft_atoi(p->traverse);
 			p->traverse++;
 		}
-		(ft_strchr_c("hljz", *p->traverse)) ? parse_conversion(p) : 0;
-		(ft_strchr_c("#0-+ .123456789hjlz", *p->traverse)) ? p->traverse++ : 0;
+		(ft_strchr_c("hlLjz", *p->traverse)) ? parse_conversion(p) : 0;
+		(ft_strchr_c("#0-+ .123456789hjLlz", *p->traverse)) ? p->traverse++ : 0;
 	}
 }

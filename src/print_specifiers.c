@@ -102,10 +102,12 @@ void	print_di(t_data *p)
 
 void	print_f(t_data *p)
 {
-	double	f;
-	char	*tmp;
+	long double		f;
+	char			*tmp;
 
-	f = va_arg(p->arg, double);
+	f = f_length(p);
 	tmp = ft_putfloat(f, p->precision);
+	if (p->width > (int)ft_strlen(tmp))
+		tmp = handle_width_int(tmp, p);
 	ft_putstr(tmp);
 }

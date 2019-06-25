@@ -77,3 +77,14 @@ void	print_u(t_data *p)
 		ft_putstr(s);
 	tmp[0] != '\0' ? p->reee = (int)ft_strlen(tmp) : (p->reee = (int)ft_strlen(s));
 }
+
+void	print_percent(t_data *p)
+{
+	char	*buff;
+	int 	i;
+
+	i = -1;
+	buff = ft_strnew(p->width);
+	if (p->width > 0)
+		buff = handle_width_percent();
+}

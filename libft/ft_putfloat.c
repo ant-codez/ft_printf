@@ -11,12 +11,33 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
-char	*ft_putfloat(double n, int p)
+long double		f_precision(int p)
 {
-	signed long int	decimal;
-	int				d;
-	signed long int num;
+	long double d;
+
+	d = 1;
+	if (p <= 0)
+	{
+		if (p == -1)
+			p = 6;
+		else if (p == 0)
+			return(0);
+	}
+	if (p > 0)
+	{
+		while (--p >= 0)
+			d *= 10;
+	}
+	return (d); 
+}
+
+char	*ft_putfloat(long double n, int p)
+{
+	long long		decimal;
+	long double		d;
+	long long 		num;
 	char			*tmp;
 
 	tmp = ft_strnew(42);
@@ -26,19 +47,16 @@ char	*ft_putfloat(double n, int p)
 		n *= -1;
 	}
 	d = 1;
-	num = (signed long int)n;
+	num = (long long)n;
 	tmp = ft_strjoin(tmp, ft_itoa_u(num));
-	tmp = ft_strjoin(tmp, ".");
 	n -= num;
-
-	if (p > 0)
-		while (--p >= 0)
-			d *= 10;
-	else
-		d = 1000000;
-
+	d = f_precision(p);
 	n *= d;
-	decimal = (signed long int)(n + 0.5);
-	tmp = ft_strjoin(tmp, ft_itoa_u(decimal));
+	decimal = (long long)(n + 0.5);
+	if (d > 0)
+	{
+		tmp = ft_strjoin(tmp, ".");
+		tmp = ft_strjoin(tmp, ft_itoa_u(decimal));
+	}
 	return (tmp);
 }
