@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/25 12:57:16 by achavez           #+#    #+#             */
-/*   Updated: 2019/06/25 12:57:28 by achavez          ###   ########.fr       */
+/*   Updated: 2019/06/29 15:24:13 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,11 @@ char	*handle_precision(int precision, char *str)
 	char	*tmp;
 	int		i;
 
-	i = -1;
-	tmp = ft_strnew(precision);
+	if (precision == -1 || precision == 0)
+		return("");
+	else
+		i = -1;
+	tmp = ft_strnew(42);
 	while(++i != precision)
 		tmp[i] = str[i];
 	return (tmp);
@@ -81,9 +84,4 @@ char	*handle_width_int(char *str, t_data *p)
 	else
 		tmp = ft_strjoin(buff, str);
 	return (tmp);
-}
-
-char    *handle_width_percent(char *str, t_data *p)
-{
-    
 }

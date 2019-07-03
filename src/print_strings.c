@@ -11,24 +11,24 @@
 /* ************************************************************************** */
 
 #include "printf.h"
+#include <stdio.h>
 
 void	print_str(char *s, t_data *p)
 {
 	char	*pre;
 
-	pre = ft_strnew(p->precision);
+	pre = NULL;
 	if (p->precision < (int)ft_strlen(s))
 		pre = handle_precision(p->precision, s);
 	if (p->width > (int)ft_strlen(s))
 	{
-		if (p->precision ==  0)
+		if (p->precision == -1)
 			pre = handle_width(s, p);
 		else
 			pre = handle_width(pre, p);
 	}
-	if (pre[0] != '\0')
-		ft_putstr(pre);
-	else
+	if (pre == NULL)
 		ft_putstr(s);
-	pre[0] != '\0' ? p->reee = (int)ft_strlen(pre) : (p->reee = (int)ft_strlen(s));
+	else
+		ft_putstr(pre);
 }

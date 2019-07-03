@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 19:11:56 by achavez           #+#    #+#             */
-/*   Updated: 2019/04/25 15:44:30 by achavez          ###   ########.fr       */
+/*   Updated: 2019/06/29 15:22:12 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,14 @@ void	print_p(t_data *p)
 	}
 }
 
-void	print_c(t_data *p)
+void	print_c(t_data *p, int percent)
 {
 	int		c;
 
-	c = va_arg(p->arg, int);
+	if (percent == 42)
+		c = '%';
+	else
+		c = va_arg(p->arg, int);
 	if (p->width > 1 && p->flags[3] == '-')
 	{
 		ft_putchar(c);
@@ -76,15 +79,4 @@ void	print_u(t_data *p)
 	else
 		ft_putstr(s);
 	tmp[0] != '\0' ? p->reee = (int)ft_strlen(tmp) : (p->reee = (int)ft_strlen(s));
-}
-
-void	print_percent(t_data *p)
-{
-	char	*buff;
-	int 	i;
-
-	i = -1;
-	buff = ft_strnew(p->width);
-	if (p->width > 0)
-		buff = handle_width_percent();
 }

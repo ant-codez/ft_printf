@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 19:11:50 by achavez           #+#    #+#             */
-/*   Updated: 2019/04/25 15:29:13 by achavez          ###   ########.fr       */
+/*   Updated: 2019/06/29 15:21:35 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void determine_specifier(t_data *p)
 	if (*p->traverse == 's')
 		print_s(p);
 	if (*p->traverse == 'c')
-		print_c(p);
+		print_c(p, -42);
 	if (*p->traverse == 'd' || *p->traverse == 'i')
 		print_di(p);
 	if (*p->traverse == 'o')
@@ -31,7 +31,7 @@ void determine_specifier(t_data *p)
 	if (*p->traverse == 'p')
 		print_p(p);
 	if (*p->traverse == '%')
-		print_percent(p);
+		print_c(p, 42);
 }
 
 void	parse_flags(t_data *p)

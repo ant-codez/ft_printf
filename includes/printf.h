@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 20:37:50 by achavez           #+#    #+#             */
-/*   Updated: 2019/04/25 15:05:57 by achavez          ###   ########.fr       */
+/*   Updated: 2019/06/29 15:23:55 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	print_o(t_data *p);
 void	print_u(t_data *p);
 void	print_x(t_data *p);
 void	print_f(t_data *p);
-void	print_c(t_data *p);
+void	print_c(t_data *p, int b00l);
 void	print_p(t_data *p);
 void	print_di(t_data *p);
 void	print_s(t_data *p);
@@ -65,7 +65,6 @@ char	*handle_precision(int pre, char *s);
 char	*handle_precision_int(char *str, int pad);
 char	*handle_width(char *str, t_data *p);
 char	*handle_width_int(char *str, t_data *p);
-char	*handle_width_percent(char *str, t_data *p);
 intmax_t		di_length(t_data *p);
 uintmax_t		oux_length(t_data *p);
 long double		f_length(t_data *p);
