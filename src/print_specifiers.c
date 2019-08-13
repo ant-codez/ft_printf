@@ -33,7 +33,7 @@ void	print_o(t_data *p)
 	str = ft_itoa_base_u(o, 8);
 	p->flags[1] == '#' ? str = ft_strjoin("0", str) : 0;
 	if (p->precision > (int)ft_strlen(str))
-		tmp = handle_precision_int(str, p->precision - (int)ft_strlen(str));
+		tmp = handle_precision_int(p, str);
 	if (p->width > (int)ft_strlen(str) && p->width > (int)ft_strlen(tmp))
 	{
 		if (tmp[0] != '\0')
@@ -59,7 +59,7 @@ void	print_x(t_data *p)
 	p->flags[1] == '#' ? str = ft_strjoin("0X", str) : 0;
 	*p->traverse == 'x' ? ft_strlower(str) : 0;
 	if (p->precision > (int)ft_strlen(str))
-		tmp = handle_precision_int(str, p->precision - (int)ft_strlen(str));
+		tmp = handle_precision_int(p, str);
 	if (p->width > (int)ft_strlen(str))
 	{
 		if (tmp[0] != '\0')
@@ -77,27 +77,28 @@ void	print_x(t_data *p)
 void	print_di(t_data *p)
 {
 	intmax_t		num;
-	char			*s;
+	char			*str;
 	char			*pre;
 
 	num = di_length(p);
-	s = ft_itoa(num);
-	if (num > 0 && p->flags[2] == '+')
-		s = ft_strjoin("+", s);
-	if (p->precision > (int)ft_strlen(s))
-		pre = handle_precision_int(s, p->precision - (int)ft_strlen(s));
-	if (p->width > (int)ft_strlen(s) && p->width > (int)ft_strlen(pre))
+	str = ft_itoa(num);
+	//printf("num  = [%ji]\nlen = [%i]\n", num, ft_getdigits(num));
+	if (num >= 0 && p->flags[2] == '+')
+		str = ft_strjoin("+", str);
+	pre = handle_precision_int(p, str);
+	if (p->width > ft_getdigits(num))
 	{
-		if (pre[0] != '\0')
-			pre = handle_width_int(pre, p);
+		if (p->precision == -1)
+			pre = handle_width_int(str, p);
 		else
-			pre = handle_width_int(s, p);
+			pre = handle_width_int(pre, p);
+		handle_swap(pre, p);
 	}
-	if (pre[0] != '\0')
+	if (pre != NULL)
 		ft_putstr(pre);
 	else
-		ft_putstr(s);
-	pre[0] != '\0' ? p->reee = (int)ft_strlen(pre) : (p->reee = (int)ft_strlen(s));
+		ft_putstr(str);
+	pre != NULL ? p->reee = (int)ft_strlen(pre) : (p->reee = (int)ft_strlen(str));
 }
 
 void	print_f(t_data *p)

@@ -12,12 +12,14 @@
 
 #include "libft.h"
 
-int		ft_getdigits(int num)
+int		ft_getdigits(intmax_t num)
 {
 	int digits;
 
 	digits = 1;
-		while (num > 9)
+	if (num < 0)
+		num *= -1;
+	while (num > 9)
 		{
 			num /= 10;
 			digits++;

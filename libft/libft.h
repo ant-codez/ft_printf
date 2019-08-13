@@ -51,7 +51,7 @@ char				*ft_itoa_base_u(uintmax_t x, int base);
 int					ft_isalpha(int arg);
 int					ft_isdigit(int arg);
 int					ft_isalnum(int arg);
-int					ft_getdigits(int num);
+int					ft_getdigits(intmax_t num);
 int					ft_isascii(int arg);
 int					ft_isprint(int arg);
 int					ft_upperchar(char *character);

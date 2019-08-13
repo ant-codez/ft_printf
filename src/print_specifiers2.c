@@ -66,7 +66,7 @@ void	print_u(t_data *p)
 	u = oux_length(p);
 	s = ft_itoa_u(u);
 	if (p->precision > (int)ft_strlen(s))
-		tmp = handle_precision_int(s, p->precision - (int)ft_strlen(s));
+		tmp = handle_precision_int(p, s);
 	if (p->width > (int)ft_strlen(s))
 	{
 		if (tmp[0] != '\0')

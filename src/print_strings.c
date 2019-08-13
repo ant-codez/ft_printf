@@ -17,10 +17,8 @@ void	print_str(char *s, t_data *p)
 {
 	char	*pre;
 
-	pre = NULL;
-	if (p->precision < (int)ft_strlen(s))
-		pre = handle_precision(p->precision, s);
-	if (p->width > (int)ft_strlen(s))
+	pre = handle_precision(p->precision, s);
+	if (p->width > 0)
 	{
 		if (p->precision == -1)
 			pre = handle_width(s, p);
