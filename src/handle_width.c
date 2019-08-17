@@ -47,9 +47,17 @@ char	*handle_precision(int precision, char *str)
 	return (tmp);
 }
 
+//Try and model behavior after width for str
+char	*handle_precision_intV2(t_data *p, char *str)
+{
+
+}
+
+//Version 1 for di int
 char	*handle_precision_int(t_data *p, char *str)
 {
 	int 	i;
+	int		len;
 	char	*tmp;
 
 	if (p->precision < (int)ft_strlen(str))
@@ -61,12 +69,16 @@ char	*handle_precision_int(t_data *p, char *str)
 	else
 		i = -1;
 	tmp = ft_strnew(42);
-	while (++i != (p->precision - (int)ft_strlen(str)))
+	len = (int)ft_strlen(str);
+	if (str[0] == '+' || str[0] == '-')
+		len--;
+	while (++i != (p->precision - len))
 		tmp[i] = '0';
 	tmp = ft_strjoin(tmp, str);
 	return (tmp);
 }
 
+//Version 1 for di width
 char	*handle_width_int(char *str, t_data *p)
 {
 	char 	*buff;
@@ -89,8 +101,6 @@ char	*handle_swap(char *str, t_data *p)
 	char	t;
 	int		i;
 
-	p->precision = 0;
-
 	i = -1;
 	while (str[++i] != '\0')
 		if ((str[i] == '-' || str[i] == '+') && p->flags[0] == '0')
@@ -99,5 +109,12 @@ char	*handle_swap(char *str, t_data *p)
 			str[i] = str[0];
 			str[0] = t;
 		}
+		else if((str[i] == '-' || str[i] == '+') && p->precision > 0 )
+		{
+			t = str[i];
+			str[i] = str[0];
+			str[0] = t;
+		}
 	return (str);
 }
+

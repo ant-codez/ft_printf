@@ -83,8 +83,6 @@ void	print_di(t_data *p)
 	num = di_length(p);
 	str = ft_itoa(num);
 	//printf("num  = [%ji]\nlen = [%i]\n", num, ft_getdigits(num));
-	if (num >= 0 && p->flags[2] == '+')
-		str = ft_strjoin("+", str);
 	pre = handle_precision_int(p, str);
 	if (p->width > ft_getdigits(num))
 	{
@@ -92,7 +90,6 @@ void	print_di(t_data *p)
 			pre = handle_width_int(str, p);
 		else
 			pre = handle_width_int(pre, p);
-		handle_swap(pre, p);
 	}
 	if (pre != NULL)
 		ft_putstr(pre);
