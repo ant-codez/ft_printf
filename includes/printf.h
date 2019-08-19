@@ -63,6 +63,7 @@ void	print_percent(t_data *p);
 void	print_str(char *s, t_data *p);
 char	*handle_precision(int pre, char *s);
 char	*handle_precision_int(t_data *p, char *str);
+char	*handle_precision_intV2(char *str, intmax_t num, t_data *p);
 char	*handle_width(char *str, t_data *p);
 char	*handle_width_int(char *str, t_data *p);
 char	*handle_swap(char *str, t_data *p);

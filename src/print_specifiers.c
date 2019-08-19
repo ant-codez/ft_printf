@@ -83,7 +83,7 @@ void	print_di(t_data *p)
 	num = di_length(p);
 	str = ft_itoa(num);
 	//printf("num  = [%ji]\nlen = [%i]\n", num, ft_getdigits(num));
-	pre = handle_precision_int(p, str);
+	pre = handle_precision_intV2(str, num, p);
 	if (p->width > ft_getdigits(num))
 	{
 		if (p->precision == -1)

@@ -30,6 +30,38 @@ char	*handle_width(char *str, t_data *p)
 		tmp = ft_strjoin(buff, str);
 	return (tmp);
 }
+
+//Try and model behavior after width for str : handles only signed ints
+char	*handle_precision_intV2(char *str, intmax_t num, t_data *p)
+{
+	int		i;
+	int		overflow;
+	char	*tmp;
+	char	*ovr;
+
+	if (p->precision == -1)
+		return (NULL);
+	else if (p->precision == 0)
+		return ("");
+	else if (p->precision <= ft_getdigits(num))
+		return (str);
+	else 
+		i = -1;
+	tmp = ft_strnew(42);
+	while (++i != p->precision)
+		tmp[i] = str[i];
+	overflow = p->precision - ft_getdigits(num);
+	if (overflow > 0)
+	{
+		i = 0;
+		ovr = ft_strnew(42);
+		while (overflow-- > 0)
+			ovr[i++] = '0';
+		tmp = ft_strjoin(ovr, tmp);
+	}
+	return (tmp);
+}
+
 char	*handle_precision(int precision, char *str)
 {
 	char	*tmp;
@@ -45,12 +77,6 @@ char	*handle_precision(int precision, char *str)
 	while(++i != precision)
 		tmp[i] = str[i];
 	return (tmp);
-}
-
-//Try and model behavior after width for str
-char	*handle_precision_intV2(t_data *p, char *str)
-{
-
 }
 
 //Version 1 for di int
@@ -104,12 +130,6 @@ char	*handle_swap(char *str, t_data *p)
 	i = -1;
 	while (str[++i] != '\0')
 		if ((str[i] == '-' || str[i] == '+') && p->flags[0] == '0')
-		{
-			t = str[i];
-			str[i] = str[0];
-			str[0] = t;
-		}
-		else if((str[i] == '-' || str[i] == '+') && p->precision > 0 )
 		{
 			t = str[i];
 			str[i] = str[0];
