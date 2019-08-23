@@ -32,34 +32,43 @@ char	*handle_width(char *str, t_data *p)
 }
 
 //Try and model behavior after width for str : handles only signed ints
-char	*handle_precision_intV2(char *str, intmax_t num, t_data *p)
+void	handle_precision_intV2(int neg, intmax_t num, t_data *p)
+{
+	int 	i;
+	int		overflow;
+
+	i = 0;
+	if (neg == 0 && p->flags[2] == '+')
+		ft_putchar('+');
+	else if (neg == 1)
+		ft_putchar('-');
+	else if (p->flags[4] == ' ' && neg != 1 && p->flags[2] != '+')
+		ft_putchar(' ');
+	overflow = p->precision - ft_getdigits(num);
+	if (overflow > 0 && p->precision != -1)
+		while(overflow-- > 0)
+			ft_putnbr(0);
+}
+
+//Version 2.0 for di width
+void	handle_width_intV2(int neg, intmax_t num, t_data *p)
 {
 	int		i;
-	int		overflow;
-	char	*tmp;
-	char	*ovr;
+	int		length;
 
-	if (p->precision == -1)
-		return (NULL);
-	else if (p->precision == 0)
-		return ("");
-	else if (p->precision <= ft_getdigits(num))
-		return (str);
-	else 
-		i = -1;
-	tmp = ft_strnew(42);
-	while (++i != p->precision)
-		tmp[i] = str[i];
-	overflow = p->precision - ft_getdigits(num);
-	if (overflow > 0)
-	{
-		i = 0;
-		ovr = ft_strnew(42);
-		while (overflow-- > 0)
-			ovr[i++] = '0';
-		tmp = ft_strjoin(ovr, tmp);
-	}
-	return (tmp);
+	i = -1;
+	if (p->width > p->precision && p->precision != -1)
+		p->precision > ft_getdigits(num) ? length = p->width - p->precision :
+		(length = p->width - ft_getdigits(num)); 
+	else
+		length = p->width - ft_getdigits(num);
+	if (neg == 1 || (neg == 0 && p->flags[2] == '+') || (neg == 0 && p->flags[4] == ' '))
+		length--;
+	while (++i != length)
+		if (p->precision < p->width && p->flags[0] == '0' && p->precision != -1)
+			ft_putchar(' ');
+		else
+			p->flags[0] == '0' ? ft_putchar('0') : ft_putchar(' ');
 }
 
 char	*handle_precision(int precision, char *str)

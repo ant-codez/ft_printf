@@ -76,26 +76,30 @@ void	print_x(t_data *p)
 
 void	print_di(t_data *p)
 {
-	intmax_t		num;
-	char			*str;
-	char			*pre;
+	intmax_t	num;
+	int			neg;
 
 	num = di_length(p);
-	str = ft_itoa(num);
-	//printf("num  = [%ji]\nlen = [%i]\n", num, ft_getdigits(num));
-	pre = handle_precision_intV2(str, num, p);
-	if (p->width > ft_getdigits(num))
+	neg = 0;
+	if (num < 0)
 	{
-		if (p->precision == -1)
-			pre = handle_width_int(str, p);
-		else
-			pre = handle_width_int(pre, p);
+		num *= -1;
+		neg = 1;
 	}
-	if (pre != NULL)
-		ft_putstr(pre);
-	else
-		ft_putstr(str);
-	pre != NULL ? p->reee = (int)ft_strlen(pre) : (p->reee = (int)ft_strlen(str));
+	if (p->flags[3] == '-')
+	{
+		handle_precision_intV2(neg, num, p);
+		if (p->precision != 0)
+			ft_putnbr(num);
+	}
+	if (p->width > ft_getdigits(num))
+			handle_width_intV2(neg, num, p);
+	if (p->flags[3] != '-')
+	{
+		handle_precision_intV2(neg, num, p);
+		if (p->precision != 0)	
+			ft_putnbr(num);
+	}
 }
 
 void	print_f(t_data *p)
