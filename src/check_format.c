@@ -82,10 +82,16 @@ void	find_conversions(t_data *p)
 				p->width = (p->width * 10) + ft_atoi(p->traverse);
 				p->traverse++;
 		}
-		if (*p->traverse == '.' && (p->traverse)++)
+		if (*p->traverse == '.')
 		{
-			p->precision = ft_atoi(p->traverse);
 			p->traverse++;
+			if (*p->traverse >= '0' && *p->traverse <= '9')
+			{
+				p->precision = ft_atoi(p->traverse);
+				p->traverse++;
+			}
+			else
+				p->precision = -2;
 		}
 		(ft_strchr_c("hlLjz", *p->traverse)) ? parse_conversion(p) : 0;
 		(ft_strchr_c("#0-+ .123456789hjLlz", *p->traverse)) ? p->traverse++ : 0;

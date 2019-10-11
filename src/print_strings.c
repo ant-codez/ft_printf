@@ -17,6 +17,7 @@ void	print_str(char *s, t_data *p)
 {
 	char	*pre;
 
+	//printf("Precision = [%d]\n", p->precision);
 	pre = handle_precision(p->precision, s);
 	if (p->width > 0)
 	{

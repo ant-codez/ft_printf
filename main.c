@@ -22,10 +22,11 @@ int main()
 	int			num = 124221;
 	float		f = 42.42;
 	long double ld = 12334234234.4134135412;
+	unsigned long long 	ullmax = 9223372036854775807;
 
 
-	printf("%.i\n", 0);
+	printf("PF = [%05x]\n", 34);
 
-	ft_printf("%.i\n", 0);
+	ft_printf("FT = [%05x]\n", 34);
 	return 0;
 }

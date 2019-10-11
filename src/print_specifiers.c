@@ -25,27 +25,36 @@ void	print_s(t_data *p)
 
 void	print_o(t_data *p)
 {
-	uintmax_t 	o;
-	char			*str;
-	char			*tmp;
+	uintmax_t 		num;
 
-	o = oux_length(p);
-	str = ft_itoa_base_u(o, 8);
-	p->flags[1] == '#' ? str = ft_strjoin("0", str) : 0;
-	if (p->precision > (int)ft_strlen(str))
-		tmp = handle_precision_int(p, str);
-	if (p->width > (int)ft_strlen(str) && p->width > (int)ft_strlen(tmp))
+	num = oux_length(p);
+	num = ft_u_num_to_base((intmax_t)num, 8);
+	//printf("precision = [%d]\n", p->precision);
+	if (p->flags[3] == '-')
 	{
-		if (tmp[0] != '\0')
-			tmp = handle_width_int(tmp, p);
-		else
-			tmp = handle_width_int(str, p);
+		print_symbols(p, 3, (int)num);
+		handle_u_precision_intV2(num, p);
+		if (p->precision != 0 && p->precision != -2)
+			ft_putnbr_u(num);
+		if (p->width > ft_getdigits(num))
+			handle_u_width_intV2(num, p);
 	}
-	if (tmp[0] != '\0')
-		ft_putstr(tmp);
-	else
-		ft_putstr(str);
-	tmp[0] != '\0' ? p->reee = (int)ft_strlen(tmp) : (p->reee = (int)ft_strlen(str));
+	else 
+	{
+		if (p->width > ft_getdigits(num))
+		{
+			if (p->flags[0] == '0' && p->precision == -1)
+				print_symbols(p, 3, (int)num);
+			handle_u_width_intV2(num, p);
+			if (p->flags[0] != '0' || (p->flags[0] == '0' && (p->width > p->precision) && p->precision != -1))
+				print_symbols(p, 3, (int)num);
+		}
+		else
+			print_symbols(p, 3, (int)num);		
+		handle_u_precision_intV2(num, p);
+		if (p->precision != 0 && p->precision != -2)	
+			ft_putnbr_u(num);
+	}
 }
 
 void	print_x(t_data *p)
@@ -88,16 +97,27 @@ void	print_di(t_data *p)
 	}
 	if (p->flags[3] == '-')
 	{
-		handle_precision_intV2(neg, num, p);
-		if (p->precision != 0)
+		print_symbols(p, neg, num);
+		handle_precision_intV2(num, p);
+		if (p->precision != 0 && p->precision != -2)
 			ft_putnbr(num);
-	}
-	if (p->width > ft_getdigits(num))
+		if (p->width > ft_getdigits(num))
 			handle_width_intV2(neg, num, p);
-	if (p->flags[3] != '-')
+	}
+	else 
 	{
-		handle_precision_intV2(neg, num, p);
-		if (p->precision != 0)	
+		if (p->width > ft_getdigits(num))
+		{
+			if (p->flags[0] == '0' && p->precision == -1)
+				print_symbols(p, neg, num);
+			handle_width_intV2(neg, num, p);
+			if (p->flags[0] != '0' || (p->flags[0] == '0' && (p->width > p->precision) && p->precision != -1))
+				print_symbols(p, neg, num);
+		}
+		else
+			print_symbols(p, neg, num);		
+		handle_precision_intV2(num, p);
+		if (p->precision != 0 && p->precision != -2)	
 			ft_putnbr(num);
 	}
 }

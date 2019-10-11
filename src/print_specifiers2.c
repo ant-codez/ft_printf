@@ -59,24 +59,32 @@ void	print_c(t_data *p, int percent)
 
 void	print_u(t_data *p)
 {
-	uintmax_t 		u;
-	char			*s;
-	char			*tmp;
+	uintmax_t 		num;
 
-	u = oux_length(p);
-	s = ft_itoa_u(u);
-	if (p->precision > (int)ft_strlen(s))
-		tmp = handle_precision_int(p, s);
-	if (p->width > (int)ft_strlen(s))
+	num = oux_length(p);
+	if (p->flags[3] == '-')
 	{
-		if (tmp[0] != '\0')
-			tmp = handle_width_int(tmp, p);
-		else
-			tmp = handle_width_int(s, p);
+		print_symbols(p, 3, (int)num);
+		handle_u_precision_intV2(num, p);
+		if (p->precision != 0 && p->precision != -2)
+			ft_putnbr(num);
+		if (p->width > ft_getdigits(num))
+			handle_u_width_intV2(num, p);
 	}
-	if (tmp[0] != '\0')
-		ft_putstr(tmp);
-	else
-		ft_putstr(s);
-	tmp[0] != '\0' ? p->reee = (int)ft_strlen(tmp) : (p->reee = (int)ft_strlen(s));
+	else 
+	{
+		if (p->width > ft_getdigits(num))
+		{
+			if (p->flags[0] == '0' && p->precision == -1)
+				print_symbols(p, 3, (int)num);
+			handle_u_width_intV2(num, p);
+			if (p->flags[0] != '0' || (p->flags[0] == '0' && (p->width > p->precision) && p->precision != -1))
+				print_symbols(p, 3, (int)num);
+		}
+		else
+			print_symbols(p, 3, (int)num);		
+		handle_u_precision_intV2(num, p);
+		if (p->precision != 0 && p->precision != -2)	
+			ft_putnbr(num);
+	}
 }

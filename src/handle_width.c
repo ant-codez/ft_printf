@@ -32,18 +32,12 @@ char	*handle_width(char *str, t_data *p)
 }
 
 //Try and model behavior after width for str : handles only signed ints
-void	handle_precision_intV2(int neg, intmax_t num, t_data *p)
+void	handle_precision_intV2(intmax_t num, t_data *p)
 {
 	int 	i;
 	int		overflow;
 
 	i = 0;
-	if (neg == 0 && p->flags[2] == '+')
-		ft_putchar('+');
-	else if (neg == 1)
-		ft_putchar('-');
-	else if (p->flags[4] == ' ' && neg != 1 && p->flags[2] != '+')
-		ft_putchar(' ');
 	overflow = p->precision - ft_getdigits(num);
 	if (overflow > 0 && p->precision != -1)
 		while(overflow-- > 0)
@@ -64,11 +58,72 @@ void	handle_width_intV2(int neg, intmax_t num, t_data *p)
 		length = p->width - ft_getdigits(num);
 	if (neg == 1 || (neg == 0 && p->flags[2] == '+') || (neg == 0 && p->flags[4] == ' '))
 		length--;
+	if (p->precision == -2 || p->precision == 0)
+		length++;
+	//printf("length = [%d]\n", length);
+	//printf("precision = [%d]\n", p->precision);
 	while (++i != length)
 		if (p->precision < p->width && p->flags[0] == '0' && p->precision != -1)
 			ft_putchar(' ');
 		else
 			p->flags[0] == '0' ? ft_putchar('0') : ft_putchar(' ');
+}
+
+//Try and model behavior after width for str : handles only signed ints
+void	handle_u_precision_intV2(uintmax_t num, t_data *p)
+{
+	int 	i;
+	int		overflow;
+
+	i = 0;
+	overflow = p->precision - ft_getdigits(num);
+	if (p->flags[1] == '#' && (int)num != 0)
+		overflow--;
+	if (overflow > 0 && p->precision != -1)
+		while(overflow-- > 0)
+			ft_putnbr(0);
+}
+
+//Version 2.0 for di width
+void	handle_u_width_intV2(uintmax_t num, t_data *p)
+{
+	int		i;
+	int		length;
+
+	i = -1;
+	if (p->width > p->precision && p->precision != -1)
+		p->precision > ft_getdigits(num) ? length = p->width - p->precision :
+		(length = p->width - ft_getdigits(num)); 
+	else
+		length = p->width - ft_getdigits(num);
+	//printf("FIR length = [%d]\n", length);
+	//printf("num = [%ju]\n", num);
+	if (p->flags[2] == '+' || p->flags[4] == ' ' || (p->flags[1] == '#' && (num != 0 || p->precision == 0 || p->precision == -2)))
+		length--;
+	if (p->flags[1] == '#' && (p->precision > ft_getdigits(num)) && num != 0)
+		length++;
+	if (p->precision == -2 || p->precision == 0)
+		length++;
+	//printf("FIN length = [%d]\n", length);
+	//printf("precision = [%d]\n", p->precision);
+	while (++i != length)
+		if (p->precision < p->width && p->flags[0] == '0' && p->precision != -1)
+			ft_putchar(' ');
+		else
+			p->flags[0] == '0' ? ft_putchar('0') : ft_putchar(' ');
+}
+
+//handle printing out -/+/' '
+void	print_symbols(t_data *p, int neg, int num)
+{
+	if (neg == 0 && p->flags[2] == '+')
+		ft_putchar('+');
+	else if ((p->flags[1] == '#' && (p->precision == -2 || p->precision == 0)) || (p->flags[1] == '#' && num != 0))
+		ft_putchar('0');
+	else if (neg == 1)
+		ft_putchar('-');
+	else if (p->flags[4] == ' ' && neg != 1 && p->flags[2] != '+')
+		ft_putchar(' ');
 }
 
 char	*handle_precision(int precision, char *str)
@@ -78,7 +133,7 @@ char	*handle_precision(int precision, char *str)
 
 	if (precision == -1)
 		return(NULL);
-	else if (precision == 0)
+	else if (precision == -2)
 		return("");
 	else
 		i = -1;
@@ -122,8 +177,14 @@ char	*handle_width_int(char *str, t_data *p)
 
 	i = -1;
 	buff = ft_strnew(p->width);
+	//printf("precision = [%d]\n", p->precision);
 	while (++i != (p->width - (int)ft_strlen(str)))
-		p->flags[0] == '0' ? buff[i] = '0' : (buff[i] = ' ');
+	{
+		if (p->precision < p->width && p->precision != -1)
+			buff[i] = ' ';
+		else
+			p->flags[0] == '0' && p->width  ? buff[i] = '0' : (buff[i] = ' ');	
+	}
 	if (p->flags[3] == '-')
 		tmp = ft_strjoin(str, buff);
 	else
