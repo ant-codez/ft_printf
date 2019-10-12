@@ -65,7 +65,7 @@ void	print_x(t_data *p)
 
 	x = oux_length(p);
 	str = ft_itoa_base_u(x, 16);
-	p->flags[1] == '#' ? str = ft_strjoin("0X", str) : 0;
+	p->flags[1] == '#' && x > 0 ? str = ft_strjoin("0X", str) : 0;
 	*p->traverse == 'x' ? ft_strlower(str) : 0;
 	if (p->precision > (int)ft_strlen(str))
 		tmp = handle_precision_int(p, str);
@@ -80,7 +80,6 @@ void	print_x(t_data *p)
 		ft_putstr(tmp);
 	else
 		ft_putstr(str);
-	tmp[0] != '\0' ? p->reee = (int)ft_strlen(tmp) : (p->reee = (int)ft_strlen(str));
 }
 
 void	print_di(t_data *p)

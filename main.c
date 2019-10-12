@@ -25,8 +25,8 @@ int main()
 	unsigned long long 	ullmax = 9223372036854775807;
 
 
-	printf("PF = [%05x]\n", 34);
+	printf("PF = [%#.5x]\n", 34);
 
-	ft_printf("FT = [%05x]\n", 34);
+	ft_printf("FT = [%#.5x]\n", 34);
 	return 0;
 }

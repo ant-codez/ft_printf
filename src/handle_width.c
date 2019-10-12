@@ -160,11 +160,17 @@ char	*handle_precision_int(t_data *p, char *str)
 		i = -1;
 	tmp = ft_strnew(42);
 	len = (int)ft_strlen(str);
+	if (p->flags[1] == '#')
+		len -= 2;
 	if (str[0] == '+' || str[0] == '-')
 		len--;
+	//printf("len = [%d]", len);
 	while (++i != (p->precision - len))
 		tmp[i] = '0';
-	tmp = ft_strjoin(tmp, str);
+	if (p->flags[1] == '#')
+		tmp = ft_strjoin(str, tmp);
+	else
+		tmp = ft_strjoin(tmp, str);
 	return (tmp);
 }
 
