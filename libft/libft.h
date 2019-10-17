@@ -45,7 +45,8 @@ int					ft_strncmp(const char *str1, const char *str2, size_t n);
 char				*ft_strnstr(const char *s, const char *n, size_t len);
 int					ft_strcmp(const char *s1, const char *s2);
 int					ft_atoi(const char *str);
-void				ft_putnbr_u(unsigned int num);
+uintmax_t			ft_atoi_u(const char *str);
+void				ft_putnbr_u(uintmax_t num);
 char				*ft_putfloat(long double f, int precision);
 char				*ft_itoa_base_u(uintmax_t x, int base);
 int					ft_isalpha(int arg);
@@ -83,6 +84,7 @@ void				ft_putstr_fd(char const *string, int file_descriptor);
 void				ft_putendl_fd(char const *string, int file_descriptor);
 void				ft_putnbr_fd(intmax_t number, int file_descriptor);
 char				*ft_itoa(intmax_t number);
+uintmax_t     		ft_u_num_to_base(uintmax_t num, int base);
 void				ft_function_test1();
 void				ft_function_test2();
 

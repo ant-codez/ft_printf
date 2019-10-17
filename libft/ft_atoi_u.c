@@ -1,39 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa_base_u.c                                   :+:      :+:    :+:   */
+/*   ft_atoi_u.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/25 15:35:43 by achavez           #+#    #+#             */
-/*   Updated: 2019/04/25 15:43:40 by achavez          ###   ########.fr       */
+/*   Created: 2018/10/24 19:35:11 by achavez           #+#    #+#             */
+/*   Updated: 2018/11/09 20:44:36 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 
-char	*ft_itoa_base_u(uintmax_t value, int base)
+uintmax_t	ft_atoi_u(const char *str)
 {
-	char			*s;
-	uintmax_t		num;
-	int				sign;
-	int				i;
+	size_t val;
 
-	num = value;
-	sign = base == 10 ? -1 : 0;
-	i = (sign == -1) ? 2 : 1;
-	while ((num /= base) >= 1)
-		i++;
-	s = (char*)malloc(sizeof(char) * (i + 1));
-	s[i] = '\0';
-	num = value;
-	while (i-- + sign)
+	val = 0;
+	while ((*str >= 9 && *str <= 13) || *str == ' ')
+		str++;
+	while (*str >= '0' && *str <= '9')
 	{
-		s[i] = (num % base < 10) ? num % base + '0' : num % base + 'A' - 10;
-		num /= base;
+		val *= 10;
+		val += *str - '0';
+		str++;
+		printf("Val = %jo\n", val);
 	}
-	(i == 0) ? s[i] = '-' : 0;
-	//printf("TEST = %s\n", s);
-	return (s);
+	return (val);
 }
