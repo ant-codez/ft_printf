@@ -29,15 +29,15 @@ void	print_o(t_data *p)
 
 	num = oux_length(p);
 	num = ft_u_num_to_base((intmax_t)num, 8);
-	//printf("precision = [%d]\n", p->precision);
+	//printf("num = [%d]\n", (int)num);
 	if (p->flags[3] == '-')
 	{
 		print_symbols(p, 3, (int)num);
-		handle_u_precision_intV2(num, p);
+		handle_u_precision_intV2(num, ft_getdigits(num), p);
 		if (p->precision != 0 && p->precision != -2)
 			ft_putnbr_u(num);
 		if (p->width > ft_getdigits(num))
-			handle_u_width_intV2(num, p);
+			handle_u_width_intV2(num, ft_getdigits(num), p);
 	}
 	else 
 	{
@@ -45,13 +45,13 @@ void	print_o(t_data *p)
 		{
 			if (p->flags[0] == '0' && p->precision == -1)
 				print_symbols(p, 3, (int)num);
-			handle_u_width_intV2(num, p);
+			handle_u_width_intV2(num, ft_getdigits(num), p);
 			if (p->flags[0] != '0' || (p->flags[0] == '0' && (p->width > p->precision) && p->precision != -1))
 				print_symbols(p, 3, (int)num);
 		}
 		else
 			print_symbols(p, 3, (int)num);		
-		handle_u_precision_intV2(num, p);
+		handle_u_precision_intV2(num, ft_getdigits(num), p);
 		if (p->precision != 0 && p->precision != -2)	
 			ft_putnbr_u(num);
 	}
@@ -59,27 +59,39 @@ void	print_o(t_data *p)
 
 void	print_x(t_data *p)
 {
-	uintmax_t 		x;
+	uintmax_t 		num;
 	char			*str;
-	char			*tmp;
 
-	x = oux_length(p);
-	str = ft_itoa_base_u(x, 16);
-	p->flags[1] == '#' && x > 0 ? str = ft_strjoin("0X", str) : 0;
-	*p->traverse == 'x' ? ft_strlower(str) : 0;
-	if (p->precision > (int)ft_strlen(str))
-		tmp = handle_precision_int(p, str);
-	if (p->width > (int)ft_strlen(str))
+	num = oux_length(p);
+	str = ft_itoa_base_u(num, 16);
+	if (*p->traverse == 'x')
+		ft_strlower(str);
+	num = ft_u_num_to_base((intmax_t)num, 16);
+	if (p->flags[3] == '-')
 	{
-		if (tmp[0] != '\0')
-			tmp = handle_width_int(tmp, p);
-		else
-			tmp = handle_width_int(str, p);
+		print_symbols(p, 3, (int)num);
+		handle_u_precision_intV2(num, ft_strlen(str), p);
+		if (p->precision != 0 && p->precision != -2)
+			ft_putstr(str);
+		if (p->width > (int)ft_strlen(str))
+			handle_u_width_intV2(num, ft_strlen(str), p);
 	}
-	if (tmp[0] != '\0')
-		ft_putstr(tmp);
-	else
-		ft_putstr(str);
+	else 
+	{
+		if (p->width > (int)ft_strlen(str))
+		{
+			if (p->flags[0] == '0' && p->precision == -1)
+				print_symbols(p, 3, (int)num);
+			handle_u_width_intV2(num, ft_strlen(str), p);
+			if (p->flags[0] != '0' || (p->flags[0] == '0' && (p->width > p->precision) && p->precision != -1))
+				print_symbols(p, 3, (int)num);
+		}
+		else
+			print_symbols(p, 3, (int)num);		
+		handle_u_precision_intV2(num, ft_strlen(str), p);
+		if (p->precision != 0 && p->precision != -2)	
+			ft_putstr(str);
+	}
 }
 
 void	print_di(t_data *p)
@@ -123,10 +135,14 @@ void	print_di(t_data *p)
 
 void	print_f(t_data *p)
 {
+	
 	long double		f;
 	char			*tmp;
 
+	
 	f = f_length(p);
+	
+	//printf("precision = [%d] ", p->precision);
 	tmp = ft_putfloat(f, p->precision);
 	if (p->width > (int)ft_strlen(tmp))
 		tmp = handle_width_int(tmp, p);

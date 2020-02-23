@@ -87,6 +87,8 @@ char				*ft_itoa(intmax_t number);
 uintmax_t     		ft_u_num_to_base(uintmax_t num, int base);
 void				ft_function_test1();
 void				ft_function_test2();
+double				ft_ln(double x);
+double				ft_log10(double x);
 
 typedef struct		s_list
 {

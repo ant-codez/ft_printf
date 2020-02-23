@@ -62,7 +62,7 @@ void	handle_width_intV2(int neg, intmax_t num, t_data *p)
 		length++;
 	//printf("length = [%d]\n", length);
 	//printf("precision = [%d]\n", p->precision);
-	while (++i != length)
+	while (++i != length )
 		if (p->precision < p->width && p->flags[0] == '0' && p->precision != -1)
 			ft_putchar(' ');
 		else
@@ -70,14 +70,14 @@ void	handle_width_intV2(int neg, intmax_t num, t_data *p)
 }
 
 //Try and model behavior after width for str : handles only signed ints
-void	handle_u_precision_intV2(uintmax_t num, t_data *p)
+void	handle_u_precision_intV2(uintmax_t num, int digits, t_data *p)
 {
 	int 	i;
 	int		overflow;
 
 	i = 0;
-	overflow = p->precision - ft_getdigits(num);
-	if (p->flags[1] == '#' && (int)num != 0)
+	overflow = p->precision - digits;
+	if (p->flags[1] == '#' && (int)num != 0 && *p->traverse != 'x' && *p->traverse != 'X')
 		overflow--;
 	if (overflow > 0 && p->precision != -1)
 		while(overflow-- > 0)
@@ -85,28 +85,37 @@ void	handle_u_precision_intV2(uintmax_t num, t_data *p)
 }
 
 //Version 2.0 for di width
-void	handle_u_width_intV2(uintmax_t num, t_data *p)
+void	handle_u_width_intV2(uintmax_t num ,int digits, t_data *p)
 {
 	int		i;
 	int		length;
 
 	i = -1;
 	if (p->width > p->precision && p->precision != -1)
-		p->precision > ft_getdigits(num) ? length = p->width - p->precision :
-		(length = p->width - ft_getdigits(num)); 
+		p->precision > digits ? length = p->width - p->precision :
+		(length = p->width - digits); 
 	else
-		length = p->width - ft_getdigits(num);
+		length = p->width - digits;
 	//printf("FIR length = [%d]\n", length);
 	//printf("num = [%ju]\n", num);
-	if (p->flags[2] == '+' || p->flags[4] == ' ' || (p->flags[1] == '#' && (num != 0 || p->precision == 0 || p->precision == -2)))
-		length--;
-	if (p->flags[1] == '#' && (p->precision > ft_getdigits(num)) && num != 0)
+	if (p->flags[2] == '+' || p->flags[4] == ' ' || (p->flags[1] == '#' && (num != 0 && p->precision != 0 && p->precision != -2)))
+	{
+		if (*p->traverse == 'x' || *p->traverse == 'X')
+			length -= 2;
+		else
+			length--;
+	}
+	if (p->flags[1] == '#' && (p->precision > digits && p->precision > p->width && num != 0))
 		length++;
 	if (p->precision == -2 || p->precision == 0)
-		length++;
+	{
+		if (*p->traverse == 'o' && p->flags[1] == '#' && (p->precision == -2 || p->precision == 0));
+		else	
+			length++;
+	}
 	//printf("FIN length = [%d]\n", length);
 	//printf("precision = [%d]\n", p->precision);
-	while (++i != length)
+	while (++i < length)
 		if (p->precision < p->width && p->flags[0] == '0' && p->precision != -1)
 			ft_putchar(' ');
 		else
@@ -116,14 +125,24 @@ void	handle_u_width_intV2(uintmax_t num, t_data *p)
 //handle printing out -/+/' '
 void	print_symbols(t_data *p, int neg, int num)
 {
-	if (neg == 0 && p->flags[2] == '+')
-		ft_putchar('+');
-	else if ((p->flags[1] == '#' && (p->precision == -2 || p->precision == 0)) || (p->flags[1] == '#' && num != 0))
-		ft_putchar('0');
-	else if (neg == 1)
-		ft_putchar('-');
-	else if (p->flags[4] == ' ' && neg != 1 && p->flags[2] != '+')
-		ft_putchar(' ');
+	if ((p->precision != 0 && p->precision != -2) || *p->traverse == 'o' || *p->traverse == 'd' || *p->traverse == 'i')
+	{
+		if (neg == 0 && p->flags[2] == '+')
+			ft_putchar('+');
+		else if ((p->flags[1] == '#' && (p->precision == -2 || p->precision == 0)) || (p->flags[1] == '#' && num != 0))
+		{
+			if (*p->traverse == 'X')
+				ft_putstr("0X");
+			else if (*p->traverse == 'x')
+				ft_putstr("0x");
+			else
+				ft_putchar('0');
+		}
+		else if (neg == 1)
+			ft_putchar('-');
+		else if (p->flags[4] == ' ' && neg != 1 && p->flags[2] != '+')
+			ft_putchar(' ');
+	}
 }
 
 char	*handle_precision(int precision, char *str)
@@ -160,17 +179,12 @@ char	*handle_precision_int(t_data *p, char *str)
 		i = -1;
 	tmp = ft_strnew(42);
 	len = (int)ft_strlen(str);
-	if (p->flags[1] == '#')
-		len -= 2;
 	if (str[0] == '+' || str[0] == '-')
 		len--;
 	//printf("len = [%d]", len);
 	while (++i != (p->precision - len))
 		tmp[i] = '0';
-	if (p->flags[1] == '#')
-		tmp = ft_strjoin(str, tmp);
-	else
-		tmp = ft_strjoin(tmp, str);
+	tmp = ft_strjoin(tmp, str);
 	return (tmp);
 }
 

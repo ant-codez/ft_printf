@@ -65,11 +65,11 @@ void	print_u(t_data *p)
 	if (p->flags[3] == '-')
 	{
 		print_symbols(p, 3, (int)num);
-		handle_u_precision_intV2(num, p);
+		handle_u_precision_intV2(num, ft_getdigits(num), p);
 		if (p->precision != 0 && p->precision != -2)
 			ft_putnbr(num);
 		if (p->width > ft_getdigits(num))
-			handle_u_width_intV2(num, p);
+			handle_u_width_intV2(num, ft_getdigits(num), p);
 	}
 	else 
 	{
@@ -77,13 +77,13 @@ void	print_u(t_data *p)
 		{
 			if (p->flags[0] == '0' && p->precision == -1)
 				print_symbols(p, 3, (int)num);
-			handle_u_width_intV2(num, p);
+			handle_u_width_intV2(num, ft_getdigits(num), p);
 			if (p->flags[0] != '0' || (p->flags[0] == '0' && (p->width > p->precision) && p->precision != -1))
 				print_symbols(p, 3, (int)num);
 		}
 		else
 			print_symbols(p, 3, (int)num);		
-		handle_u_precision_intV2(num, p);
+		handle_u_precision_intV2(num, ft_getdigits(num), p);
 		if (p->precision != 0 && p->precision != -2)	
 			ft_putnbr(num);
 	}
