@@ -6,18 +6,16 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 16:04:13 by achavez           #+#    #+#             */
-/*   Updated: 2019/04/25 20:08:45 by achavez          ###   ########.fr       */
+/*   Updated: 2020/02/23 17:38:51 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
-#include <stdio.h>
 
 void	print_str(char *s, t_data *p)
 {
 	char	*pre;
 
-	//printf("Precision = [%d]\n", p->precision);
 	pre = handle_precision(p->precision, s);
 	if (p->width > 0)
 	{

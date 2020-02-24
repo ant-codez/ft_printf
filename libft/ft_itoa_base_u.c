@@ -6,12 +6,11 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/25 15:35:43 by achavez           #+#    #+#             */
-/*   Updated: 2019/04/25 15:43:40 by achavez          ###   ########.fr       */
+/*   Updated: 2020/02/23 16:55:39 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 char	*ft_itoa_base_u(uintmax_t value, int base)
 {
@@ -34,6 +33,5 @@ char	*ft_itoa_base_u(uintmax_t value, int base)
 		num /= base;
 	}
 	(i == 0) ? s[i] = '-' : 0;
-	//printf("TEST = %s\n", s);
 	return (s);
 }

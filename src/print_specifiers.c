@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/15 14:49:35 by achavez           #+#    #+#             */
-/*   Updated: 2019/06/21 20:15:24 by achavez          ###   ########.fr       */
+/*   Updated: 2020/02/23 17:55:54 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,10 @@ void	print_s(t_data *p)
 
 void	print_o(t_data *p)
 {
-	uintmax_t 		num;
+	uintmax_t	num;
 
 	num = oux_length(p);
 	num = ft_u_num_to_base((intmax_t)num, 8);
-	//printf("num = [%d]\n", (int)num);
 	if (p->flags[3] == '-')
 	{
 		print_symbols(p, 3, (int)num);
@@ -39,7 +38,7 @@ void	print_o(t_data *p)
 		if (p->width > ft_getdigits(num))
 			handle_u_width_intV2(num, ft_getdigits(num), p);
 	}
-	else 
+	else
 	{
 		if (p->width > ft_getdigits(num))
 		{
@@ -50,16 +49,16 @@ void	print_o(t_data *p)
 				print_symbols(p, 3, (int)num);
 		}
 		else
-			print_symbols(p, 3, (int)num);		
+			print_symbols(p, 3, (int)num);
 		handle_u_precision_intV2(num, ft_getdigits(num), p);
-		if (p->precision != 0 && p->precision != -2)	
+		if (p->precision != 0 && p->precision != -2)
 			ft_putnbr_u(num);
 	}
 }
 
 void	print_x(t_data *p)
 {
-	uintmax_t 		num;
+	uintmax_t		num;
 	char			*str;
 
 	num = oux_length(p);
@@ -76,7 +75,7 @@ void	print_x(t_data *p)
 		if (p->width > (int)ft_strlen(str))
 			handle_u_width_intV2(num, ft_strlen(str), p);
 	}
-	else 
+	else
 	{
 		if (p->width > (int)ft_strlen(str))
 		{
@@ -87,9 +86,9 @@ void	print_x(t_data *p)
 				print_symbols(p, 3, (int)num);
 		}
 		else
-			print_symbols(p, 3, (int)num);		
+			print_symbols(p, 3, (int)num);
 		handle_u_precision_intV2(num, ft_strlen(str), p);
-		if (p->precision != 0 && p->precision != -2)	
+		if (p->precision != 0 && p->precision != -2)
 			ft_putstr(str);
 	}
 }
@@ -115,7 +114,7 @@ void	print_di(t_data *p)
 		if (p->width > ft_getdigits(num))
 			handle_width_intV2(neg, num, p);
 	}
-	else 
+	else
 	{
 		if (p->width > ft_getdigits(num))
 		{
@@ -126,23 +125,19 @@ void	print_di(t_data *p)
 				print_symbols(p, neg, num);
 		}
 		else
-			print_symbols(p, neg, num);		
+			print_symbols(p, neg, num);
 		handle_precision_intV2(num, p);
-		if (p->precision != 0 && p->precision != -2)	
+		if (p->precision != 0 && p->precision != -2)
 			ft_putnbr(num);
 	}
 }
 
 void	print_f(t_data *p)
 {
-	
 	long double		f;
 	char			*tmp;
 
-	
 	f = f_length(p);
-	
-	//printf("precision = [%d] ", p->precision);
 	tmp = ft_putfloat(f, p->precision);
 	if (p->width > (int)ft_strlen(tmp))
 		tmp = handle_width_int(tmp, p);

@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 19:11:56 by achavez           #+#    #+#             */
-/*   Updated: 2019/06/29 15:22:12 by achavez          ###   ########.fr       */
+/*   Updated: 2020/02/23 17:37:33 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	print_c(t_data *p, int percent)
 
 void	print_u(t_data *p)
 {
-	uintmax_t 		num;
+	uintmax_t	num;
 
 	num = oux_length(p);
 	if (p->flags[3] == '-')
@@ -71,20 +71,21 @@ void	print_u(t_data *p)
 		if (p->width > ft_getdigits(num))
 			handle_u_width_intV2(num, ft_getdigits(num), p);
 	}
-	else 
+	else
 	{
 		if (p->width > ft_getdigits(num))
 		{
 			if (p->flags[0] == '0' && p->precision == -1)
 				print_symbols(p, 3, (int)num);
 			handle_u_width_intV2(num, ft_getdigits(num), p);
-			if (p->flags[0] != '0' || (p->flags[0] == '0' && (p->width > p->precision) && p->precision != -1))
+			if (p->flags[0] != '0' || (p->flags[0] == '0' &&
+				(p->width > p->precision) && p->precision != -1))
 				print_symbols(p, 3, (int)num);
 		}
 		else
-			print_symbols(p, 3, (int)num);		
+			print_symbols(p, 3, (int)num);
 		handle_u_precision_intV2(num, ft_getdigits(num), p);
-		if (p->precision != 0 && p->precision != -2)	
+		if (p->precision != 0 && p->precision != -2)
 			ft_putnbr(num);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 20:36:56 by achavez           #+#    #+#             */
-/*   Updated: 2019/04/25 15:32:41 by achavez          ###   ########.fr       */
+/*   Updated: 2020/02/23 17:30:38 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		make_printf(t_data *p)
 	int rtn;
 
 	rtn = 0;
-	while(*p->traverse != '\0')
+	while (*p->traverse != '\0')
 	{
 		if (*p->traverse != '%')
 		{
@@ -43,7 +43,7 @@ int		make_printf(t_data *p)
 	return (rtn);
 }
 
-int		ft_printf(const char * restrict format, ...)
+int		ft_printf(const char *restrict format, ...)
 {
 	t_data	p;
 	int		done;
@@ -54,7 +54,6 @@ int		ft_printf(const char * restrict format, ...)
 	va_start(p.arg, format);
 	done = make_printf(&p);
 	va_end(p.arg);
-
 	return (done);
 }
 

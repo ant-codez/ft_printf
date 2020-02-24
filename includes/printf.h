@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/04 20:37:50 by achavez           #+#    #+#             */
-/*   Updated: 2019/06/29 15:23:55 by achavez          ###   ########.fr       */
+/*   Updated: 2020/02/23 17:29:26 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,9 @@ typedef enum	e_len
 ** flags: 0 = [0], 1 = [#], 2 = [+], 3 = [-], 4 = [ ]
 */
 
-typedef struct 		s_data
+typedef struct	s_data
 {
-	// important and must be stored in struct
-	va_list 		arg;
+	va_list			arg;
 	char			*traverse;
 	char			flags[5];
 	int				width;
@@ -35,16 +34,14 @@ typedef struct 		s_data
 	int				length;
 	char			*buffer;
 	int				reee;
-
-	//just used to hold data from va_arg()
 	char			*str;
 	unsigned int	i;
 	int				p;
 	double			f;
 	void			*v;
-}					t_data;
+}				t_data;
 
-int				printf(const char * restrict format, ...);
+int				printf(const char	*restrict format, ...);
 int				make_printf(t_data *p);
 void			parse_format(t_data *p);
 void			find_conversions(t_data *p);
@@ -63,10 +60,10 @@ void			print_percent(t_data *p);
 void			print_str(char *s, t_data *p);
 char			*handle_precision(int pre, char *s);
 char			*handle_precision_int(t_data *p, char *str);
-void			handle_precision_intV2(intmax_t num, t_data *p);
-void			handle_u_precision_intV2(uintmax_t num, int digits, t_data *p);
-void			handle_width_intV2(int token, intmax_t num, t_data *p);
-void			handle_u_width_intV2(uintmax_t num, int digits, t_data *p);
+void			handle_precision_intv2(intmax_t num, t_data *p);
+void			handle_u_precision_intv2(uintmax_t num, int digits, t_data *p);
+void			handle_width_intv2(int token, intmax_t num, t_data *p);
+void			handle_u_width_intv2(uintmax_t num, int digits, t_data *p);
 void			print_symbols(t_data *p, int neg, int num);
 char			*handle_width(char *str, t_data *p);
 char			*handle_width_int(char *str, t_data *p);

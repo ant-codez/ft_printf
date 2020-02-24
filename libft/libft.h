@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/22 17:43:03 by achavez           #+#    #+#             */
-/*   Updated: 2019/04/25 15:37:38 by achavez          ###   ########.fr       */
+/*   Updated: 2020/02/23 16:56:10 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void				ft_putstr_fd(char const *string, int file_descriptor);
 void				ft_putendl_fd(char const *string, int file_descriptor);
 void				ft_putnbr_fd(intmax_t number, int file_descriptor);
 char				*ft_itoa(intmax_t number);
-uintmax_t     		ft_u_num_to_base(uintmax_t num, int base);
+uintmax_t			ft_u_num_to_base(uintmax_t num, int base);
 void				ft_function_test1();
 void				ft_function_test2();
 double				ft_ln(double x);

@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/21 20:11:04 by achavez           #+#    #+#             */
-/*   Updated: 2019/06/21 20:34:54 by achavez          ###   ########.fr       */
+/*   Updated: 2020/02/23 17:46:41 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 intmax_t		di_length(t_data *p)
 {
-	intmax_t  x;
+	intmax_t	x;
 
 	if (p->length == hh)
 		x = (signed char)va_arg(p->arg, int);
@@ -34,9 +34,9 @@ intmax_t		di_length(t_data *p)
 	return (x);
 }
 
-uintmax_t	oux_length(t_data *p)
+uintmax_t		oux_length(t_data *p)
 {
-	uintmax_t o;
+	uintmax_t	o;
 
 	if (p->length == hh)
 		o = (unsigned char)va_arg(p->arg, unsigned int);
@@ -56,15 +56,14 @@ uintmax_t	oux_length(t_data *p)
 	return (o);
 }
 
-long double		f_length(t_data *p) 
+long double		f_length(t_data *p)
 {
-	long double f;
+	long double	f;
 
 	if (p->length == L)
 		f = (long double)va_arg(p->arg, long double);
 	else
 		f = (double)va_arg(p->arg, double);
-	
 	f = (long double)f;
 	return (f);
 }

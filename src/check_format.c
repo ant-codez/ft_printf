@@ -6,13 +6,13 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/09 19:11:50 by achavez           #+#    #+#             */
-/*   Updated: 2019/06/29 15:21:35 by achavez          ###   ########.fr       */
+/*   Updated: 2020/02/23 17:48:23 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
 
-void determine_specifier(t_data *p)
+void	determine_specifier(t_data *p)
 {
 	if (*p->traverse == 's')
 		print_s(p);
@@ -79,8 +79,8 @@ void	find_conversions(t_data *p)
 		(ft_strchr_c("#0-+ ", *p->traverse) ? parse_flags(p) : 0);
 		if (ft_strchr_c("123456789", *p->traverse))
 		{
-				p->width = (p->width * 10) + ft_atoi(p->traverse);
-				p->traverse++;
+			p->width = (p->width * 10) + ft_atoi(p->traverse);
+			p->traverse++;
 		}
 		if (*p->traverse == '.')
 		{
