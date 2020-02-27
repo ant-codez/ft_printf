@@ -6,7 +6,7 @@
 /*   By: achavez <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/06 15:02:06 by achavez           #+#    #+#             */
-/*   Updated: 2019/08/18 18:09:54 by achavez          ###   ########.fr       */
+/*   Updated: 2020/02/26 20:28:07 by achavez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,8 @@
 int main()
 {
 	char 	*str = "Hello";
-	char 	*col = "Blakkk";
-	char	c = 'F';
-	unsigned int	u = 3410000000;
-	int			num = 124221;
-	float		f = 42.42;
-	long double ld = 12334234234.4134135412;
-	unsigned long long 	ullmax = 9223372036854775807;
 
-	printf("PF = [%f]\n", 23.00041);
-
-	ft_printf("FT = [%f]\n", 23.00041);
+	printf("PF = [%s This is my printf function. Change the Make file to test correctness]\n", str);
+	ft_printf("FT = [%s This is my printf function. Change the Make file to test correctness]\n", str);
 	return 0;
 }
